@@ -1,0 +1,8 @@
+package Sort;
+
+public class QuickSort {
+
+	public static <T extends Comparable<T>> void quickSort(T [] arr){
+		
+	}
+}

@@ -1,0 +1,21 @@
+package Chap1;
+
+public class Ex1 {
+	public static boolean hasUniqueChars
+	
+	public static boolean hasUniqueCharsData(String str){
+		int []count = new int[Character.BYTES << 3];
+		
+		for(int i = 0; i < s.length(); i++){
+			count[str.charAt(i)]++;
+			if(count[str.charAt(i)] > 1)
+				return false;
+		}
+		
+		return true;
+	}
+	
+	public static void main(String [] args){
+		
+	}
+}

@@ -1,0 +1,7 @@
+package Switch;
+
+public class Switch {
+	public static void switches(Object [] arr, int i, int j){
+		
+	}
+}

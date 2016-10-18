@@ -1,0 +1,11 @@
+package Chap1;
+
+public class Ex1 {
+	public static boolean hasUniqueCharsData(String s){
+		int [] count = new int[Character.BYTES << ];
+	}
+	
+	public static void main(String [] args){
+		
+	}
+}
