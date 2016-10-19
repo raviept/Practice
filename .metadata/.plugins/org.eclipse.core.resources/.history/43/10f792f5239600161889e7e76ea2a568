@@ -1,0 +1,13 @@
+package Chap2;
+
+import DataStructures.LinkNode;
+import Gen.RandGen;
+
+public class Ex1 {
+
+	public static void main(String []args){
+		LinkNode<Integer> head = RandGen.genLink(10, 7);
+		
+		
+	}
+}

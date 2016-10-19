@@ -1,0 +1,8 @@
+package Chap1;
+
+public class Ex6 {
+
+	public static void rotate(int [][] mat){
+		
+	}
+}

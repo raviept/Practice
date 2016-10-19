@@ -1,0 +1,16 @@
+package Chap1;
+
+public class Ex4 {
+	public static boolean areAnagrams(String st1, String st2){
+		if(st1.length() != st2.length())
+			return false;
+		
+		int len = st1.length();
+		
+		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

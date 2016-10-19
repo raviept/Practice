@@ -1,0 +1,27 @@
+package Chap1;
+
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex6 {
+
+	public static void rotate(int [][] mat, int n){
+		for(int s = 0; s < n/2; s++){
+			for(int i = s; i < n-s - 1; i++){
+				int temp = mat[s][i];
+				mat[s][i] = mat[n-i-1][s];
+				mat[n-i-1][s] = mat[n-s-1][n-i-1];
+				mat[n-s-1][n-i-1] = mat[i][n-s-1];
+				mat[i][n-s-1] = temp;
+			}
+		}
+	}
+	
+	public static void main(String []args){
+		int [][] mat = RandGen.genMat(4, 4, 10);
+		Prints.printMat(mat,4,4);
+		System.out.println("");
+		rotate(mat,4);
+		Prints.printMat(mat, 4, 4);
+	}
+}

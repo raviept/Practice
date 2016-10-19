@@ -1,0 +1,10 @@
+package DataStructures;
+
+public class LinkNode<T> {
+	private T el;
+	private LinkNode<T> next;
+	
+	public LinkNode(T el){
+		
+	}
+}

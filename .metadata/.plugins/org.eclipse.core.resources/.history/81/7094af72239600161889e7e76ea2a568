@@ -1,0 +1,106 @@
+package DataStructures;
+
+import java.util.Iterator;
+
+import Gen.RandGen;
+import Prints.Prints;
+
+public class LinkNode<T> implements Iterable<T>{
+	private T el;
+	private LinkNode<T> next;
+	
+	public LinkNode(T el){
+		this.el = el;
+	}
+	
+	public void setNext(LinkNode<T> next){
+		this.next = next;
+	}
+	
+	public void add(T el){
+		if(this.next == null){
+			this.next = new LinkNode(el);
+		}
+		else{
+			this.next.add(el);
+		}
+	}
+	
+	public static <T extends Comparable<T>> LinkNode<T> remove(LinkNode<T> node, T el){
+		LinkNode<T> head = node;
+		while(head != null && head.el.compareTo(el) == 0){
+			head = head.next;
+		}
+		if(head != null){
+			LinkNode<T> prev = head;
+			do{
+				LinkNode<T> next = prev.next;
+				while(next!= null && next.el.compareTo(el) == 0){
+					next = next.next;
+				}
+				prev.next = next;
+				prev = next;
+			}while(prev != null);
+		}		
+		
+		return head;
+	}
+	
+	@Override
+    public Iterator<T> iterator() {
+		LinkNode<T> node = this;
+        Iterator<T> it = new Iterator<T>() {
+        	private boolean head = false;
+            private LinkNode<T> current = node;
+
+            @Override
+            public boolean hasNext() {
+            	if(head)
+            		return current.next != null;
+            	else
+            		return true;
+            }
+
+            @Override
+            public T next() {
+            	if(head){
+            		current = current.next;
+            		return current.el;
+            	}
+            	else{
+            		head = true;
+            		return current.el;
+            	}
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return it;
+    }
+	
+	public static <T extends Comparable<T>> LinkNode<T> removeDup(LinkNode<T> head){
+		LinkNode<T> node = head;
+		
+		while()
+		
+		return head;
+	}
+		
+	public static void main(String []args){
+		LinkNode<Integer> link = RandGen.genLink(10, 5);
+		Prints.printList(link);
+		System.out.println("");
+		link = remove(link,1);
+		Prints.printList(link);
+		System.out.println("");
+		link = remove(link,2);
+		Prints.printList(link);
+		System.out.println("");
+		link = remove(link,3);
+		Prints.printList(link);
+		System.out.println("");
+	}
+}

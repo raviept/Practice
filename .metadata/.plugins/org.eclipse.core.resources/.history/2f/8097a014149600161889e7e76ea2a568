@@ -1,0 +1,9 @@
+package Gen;
+
+public class RandGen {
+	public static int [][] genMat(int m, int n, int max){
+		int [][] mat = new int[m][n];
+		
+		
+	}
+}

@@ -1,0 +1,16 @@
+package Chap1;
+
+public class Ex6 {
+
+	public static void rotate(int [][] mat){
+		int n = mat.length;
+		for(int s = 0; s < n/2; s++){
+			for(int i = s; i < n-s; i++){
+				int temp = mat[s][i];
+				mat[s][i] = mat[n-i-1][s];
+				mat[n-i-1][s] = mat[n-s-1][n-i-1];
+				mat[n-s-1][n-i-1] = 
+			}
+		}
+	}
+}

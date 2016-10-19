@@ -1,0 +1,11 @@
+package Chap1;
+
+public class Ex4 {
+	public static boolean areAnagrams(){
+		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}
