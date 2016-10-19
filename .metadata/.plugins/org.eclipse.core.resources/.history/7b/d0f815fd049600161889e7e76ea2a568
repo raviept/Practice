@@ -1,0 +1,14 @@
+package Chap1;
+
+public class Ex3 {
+	public static String removeDup(String str){
+		char[]arr = str.toCharArray();
+		
+		
+		return new String(arr);
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

@@ -1,0 +1,42 @@
+package Sort;
+
+import Switch.Switch;
+
+public class QuickSort {
+	public static void qSortAux(int []arr, int p, int s){
+		if(s <= 0)
+			return;
+		
+		int i = p;
+		int j =  p + s-1;
+		
+		while(i < j){
+			if(arr[i+1] <= arr[i]){
+				Switch.switches(arr, i, i+1);
+				i++;
+			}
+			else{
+				Switch.switches(arr, i+1, j);
+				j--;
+			}
+		}
+				
+		qSortAux(arr, p, i-p);
+		qSortAux(arr, i+1, s - i + p);		
+	}
+	
+	public static void qSort(int []arr){
+		qSortAux(arr, 0, arr.length);
+	}
+	
+	
+/*
+	public static <T extends Comparable<? super T>> void quickSort(T [] arr){
+		
+	}*/
+	
+	
+	public static void printArr(int []){
+		
+	}
+}

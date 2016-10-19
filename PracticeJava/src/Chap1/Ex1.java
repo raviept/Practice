@@ -1,5 +1,7 @@
 package Chap1;
 
+import Sort.QuickSort;
+
 public class Ex1 {
 	public static boolean hasUniqueCharsIneff(String str){
 		for(int i = 0; i < str.length(); i++){
@@ -7,6 +9,17 @@ public class Ex1 {
 				if(str.charAt(i) == str.charAt(j))
 					return false;
 			}
+		}
+		
+		return true;
+	}
+	
+	public static boolean hasUniqueCharsMed(char [] str){		
+		QuickSort.qSort(str);
+		
+		for(int i = 0; i < str.length-1;i++){
+			if(str[i] == str[i+1])
+				return false;
 		}
 		
 		return true;
@@ -25,6 +38,6 @@ public class Ex1 {
 	}
 	
 	public static void main(String [] args){
-		System.out.println(hasUniqueCharsIneff("abac"));
+		System.out.println(hasUniqueCharsMed("bcaa aqweqwe".toCharArray()));
 	}
 }

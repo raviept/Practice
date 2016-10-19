@@ -1,0 +1,20 @@
+package Sort;
+
+public class MergeSort {
+	
+	public static void mSortAux(int []arr, int p, int s){
+		if(s <= 0)
+			return;
+		
+		mSortAux(arr, p, s/2);
+		mSortAux(arr, p + s/2, s- s/2);		
+	}
+	
+	public static void mSort(int []arr){
+		mSortAux(arr,0,arr.length);
+	}
+
+	public static void main(String []args){
+		
+	}
+}

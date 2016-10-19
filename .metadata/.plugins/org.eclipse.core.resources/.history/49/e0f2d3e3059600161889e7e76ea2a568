@@ -1,0 +1,26 @@
+package Chap1;
+
+public class Ex3 {
+	public static String removeDup(String str){
+		char [] arr = str.toCharArray();
+		int i = 0;
+		for(int j = 0; j < arr.length; j++){
+			int k;
+			for(k= 0; k < i; k++){
+				if(arr[k] == arr[j])
+					break;
+			}
+			if(k==i){
+				arr[i++] = arr[j];
+			}
+		}
+		
+		return new String(arr,0,i);
+	}
+	
+	public static void main(String []args){
+		System.out.println(removeDup(""));
+		System.out.println(removeDup("aaaa"));
+		System.out.println(removeDup("abcd"));
+	}
+}

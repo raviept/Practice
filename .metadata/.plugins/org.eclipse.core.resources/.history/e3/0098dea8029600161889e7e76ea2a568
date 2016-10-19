@@ -1,0 +1,14 @@
+package Chap1;
+
+public class Ex3 {
+	public static String reverse(String str){
+		char[]aux = str.toCharArray();
+		for(int i = 0; i < )		
+		
+		return new String(aux);
+	}
+	
+	public static void main(String [] args){
+		
+	}
+}

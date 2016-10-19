@@ -2,9 +2,9 @@ package Switch;
 
 public class Switch {
 	public static void switches(int []arr, int i, int j){
-		arr[i] = arr[j] - arr[i];
-		arr[j] -= arr[i];
-		arr[i] += arr[j];
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
 	}
 	
 	public static void switches(Object []arr, int i, int j){
