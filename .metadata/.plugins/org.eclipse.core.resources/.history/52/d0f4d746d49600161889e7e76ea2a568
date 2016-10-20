@@ -19,7 +19,7 @@ public class LinkNode<T> implements Iterable<T>{
 	
 	public void add(T el){
 		if(this.next == null){
-			this.next = new LinkNode<T>(el);
+			this.next = new LinkNode(el);
 		}
 		else{
 			this.next.add(el);
