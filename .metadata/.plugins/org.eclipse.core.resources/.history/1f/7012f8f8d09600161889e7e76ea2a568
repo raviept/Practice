@@ -1,0 +1,10 @@
+package Chap2;
+
+import DataStructures.LinkNode;
+
+public class Ex5 {
+	public static <T> LinkNode<T>	startCycle(LinkNode<T> head){
+		
+		
+	}
+}

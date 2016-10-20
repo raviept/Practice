@@ -1,0 +1,29 @@
+package Chap2;
+
+import DataStructures.LinkNode;
+
+public class Ex4 {
+	public static LinkNode<Integer> sum(LinkNode<Integer> a, LinkNode<Integer> b){
+		LinkNode<Integer> prev = null, res = null;
+		int carry = 0;
+		
+		while((carry > 0) || (a != null) || (b != null)){
+			int x = a.getEl() + b.getEl() + carry;
+			LinkNode<Integer> aux = new LinkNode<Integer>(x%10);
+			carry = x/10;
+			if(prev == null){
+				res = aux;
+			}
+			else{
+				prev.setNext(aux);
+			}
+			prev = aux;			
+		}
+		
+		return res;
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

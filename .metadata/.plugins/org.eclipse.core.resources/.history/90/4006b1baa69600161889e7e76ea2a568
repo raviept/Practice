@@ -1,0 +1,19 @@
+package Chap2;
+
+import DataStructures.LinkNode;
+
+public class Ex2 {
+
+	public static <T> LinkNode<T> nToLast(LinkNode<T> head, int n){
+		if(head == null || n<=0)
+			return null;
+		
+		LinkNode<T> p1 = head, p2 = head;
+		
+		while(){
+			
+		}
+		
+		return p1;
+	}
+}

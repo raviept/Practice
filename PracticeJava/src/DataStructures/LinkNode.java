@@ -46,6 +46,14 @@ public class LinkNode<T> implements Iterable<T>{
 		return head;
 	}
 	
+	public LinkNode<T> getNext(){
+		return this.next;
+	}
+	
+	public T getEl(){
+		return this.el;
+	}
+	
 	@Override
     public Iterator<T> iterator() {
 		LinkNode<T> node = this;

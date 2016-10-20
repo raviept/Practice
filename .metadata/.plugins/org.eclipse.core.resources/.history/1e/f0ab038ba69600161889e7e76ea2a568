@@ -1,0 +1,9 @@
+package Chap2;
+
+public class Ex2 {
+
+	public static <T> T nToLast(LinkNode<T> head, int n){
+		if(head == null || n<=0)
+			return null;
+	}
+}
