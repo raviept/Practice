@@ -1,0 +1,29 @@
+package DataStructures;
+
+public class QueueNode<T> {
+	LinkNode<T> first = null;
+	LinkNode<T> last = null;
+	
+	public void push(T el){
+		LinkNode<T> next = first;
+		head = new LinkNode<T>(el);
+		head.setNext(next);
+	}
+	
+	public T pop(){
+		T el = null;
+		if(head != null){
+			el = head.getEl();
+			head = head.getNext();
+		}
+		return el;
+	}
+	
+	public T peek(){
+		T el = null;
+		if(head != null){
+			el = head.getEl();
+		}
+		return el;
+	}
+}

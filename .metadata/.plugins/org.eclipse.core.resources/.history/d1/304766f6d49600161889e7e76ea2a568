@@ -1,0 +1,15 @@
+package DataStructures;
+
+public class QueueNode<T> {
+	LinkNode<T> head = null;
+	
+	public void queue(T el){
+		LinkNode<T> next = head;
+		head = new LinkNode<T>(el);
+		head.setNext(next);
+	}
+	
+	public T dequeue(){
+		
+	}
+}

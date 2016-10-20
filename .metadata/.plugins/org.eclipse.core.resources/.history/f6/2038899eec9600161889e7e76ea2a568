@@ -1,0 +1,10 @@
+package DataStructures;
+
+public class KStack<T> {
+	private T []stack;
+	
+	
+	public KStack(int size){
+		stack = new T[size];
+	}
+}

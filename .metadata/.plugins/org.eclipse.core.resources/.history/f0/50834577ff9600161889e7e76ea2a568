@@ -1,0 +1,40 @@
+package DataStructures;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class KStack<T> {
+	private T []stack;
+	private int [] prev;
+	private Map<Integer,Integer> stacks = new HashMap<>();
+	private LinkNode<Integer> free;
+	
+	@SuppressWarnings("unchecked")
+	public KStack(int size){
+		stack = (T[])new Object[size];
+		prev = new int[size];
+		Arrays.fill(prev, -1);
+		LinkNode<Integer> free = new LinkNode<Integer>(0);
+		for(int i = 1; i < size; i++)
+			free.add(i);
+	}
+	
+	public void push(int stackN, T val){
+		if(free == null)
+			return;
+		int pos = free.getEl();
+		free = LinkNode.remove(free, pos);
+		if(stacks.containsKey(stackN)){
+			int last = stacks.get(stackN);			
+			prev[pos] = last;
+			stack[pos] = val;			
+		}
+		stacks.put(stackN, pos);
+	}
+	
+	public T pop(int stackN){
+		if(!stacks.containsKey(stackN))
+			throw new EmptyStackException("");
+	}
+}

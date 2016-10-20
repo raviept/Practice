@@ -1,0 +1,13 @@
+package DataStructures;
+
+public class KStack<T> {
+	private T []stack;
+	private int [] prev;
+	private int numStacks;
+	
+	public KStack(int size, int numStacks){
+		stack = new T[size];
+		prev = new int[numStacks];
+		this.numStacks = numStacks;
+	}
+}
