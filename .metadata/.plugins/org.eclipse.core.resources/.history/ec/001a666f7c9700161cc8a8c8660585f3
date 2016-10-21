@@ -1,0 +1,14 @@
+package Chap3;
+
+import DataStructures.SetOfStacks;
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex3 {
+	public static void main(String []args){
+		SetOfStacks<Integer> sOs = RandGen.genSetOfStacks(10, 20, 5);
+		Prints.printData(sOs);
+		
+		
+	}
+}

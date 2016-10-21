@@ -1,0 +1,15 @@
+package Chap3;
+
+import DataStructures.Stack;
+
+public class Ex4 {
+	public static <T> void hanoi(Stack<T> a, Stack<T> b, Stack<T> c, int n){
+		if(n<=0)
+			return;
+		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

@@ -1,0 +1,9 @@
+package Chap3;
+
+public class Ex4 {
+	public static <T> void hanoi(Stack<T> a, Stack<T> b, Stack<T> c, int n)
+	
+	public static void main(String []args){
+		
+	}
+}

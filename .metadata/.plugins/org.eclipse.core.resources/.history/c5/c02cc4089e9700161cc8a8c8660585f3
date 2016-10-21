@@ -1,0 +1,35 @@
+package Chap3;
+
+import DataStructures.Stack;
+import Exceptions.EmptyStackException;
+
+public class Ex6 {
+	public static <T extends Comparable<T>> void sort(Stack<T> st){
+		if(st.isEmpty())
+			return;
+		
+		try{
+			boolean change;
+
+			Stack<T> aux = new Stack<>();
+			do{
+				change = false;
+				aux.push(st.pop());
+				while(!st.isEmpty() && aux.peek().compareTo(st.peek()) <= 0){
+					aux.push(st.pop());
+				}
+				if(!st.isEmpty()){
+					change = true;
+					T val = st.pop();
+					aux.push(st.pop());
+					st.push(val);
+					for(T v : aux)
+						st.push(v);
+				}
+			}while(change);
+		}
+		catch(EmptyStackException e){
+			e.printStackTrace();
+		}
+	}
+}

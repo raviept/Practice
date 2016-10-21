@@ -1,0 +1,24 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class SetOfStacks<T> implements DataStructure<T>{
+	private int maxSize;
+	private ArrayList<T[]> arrStack = new ArrayList<>();
+	
+	
+	
+	
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

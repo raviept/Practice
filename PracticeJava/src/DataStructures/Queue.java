@@ -1,8 +1,16 @@
 package DataStructures;
 
-public class Queue<T> {
+import java.util.Iterator;
+
+public class Queue<T> implements DataStructure<T>{
 	LinkNode<T> first = null;
 	LinkNode<T> last = null;
+	int size = 0;
+
+	@Override
+	public int size(){
+		return this.size;
+	}
 	
 	public void enqueue(T el){
 		LinkNode<T> next = new LinkNode<>(el);
@@ -13,6 +21,7 @@ public class Queue<T> {
 		else{
 			last.setNext(next);
 		}
+		size++;
 	}
 	
 	public T dequeue(){
@@ -22,6 +31,7 @@ public class Queue<T> {
 			first = first.getNext();
 			if(first == null)
 				last = null;
+			size--;
 		}
 		return el;
 	}
@@ -38,4 +48,22 @@ public class Queue<T> {
 	public boolean isEmpty(){
 		return first == null;
 	}
+	
+	@Override
+	public Iterator<T> iterator() {
+		return new Iterator<T>(){
+			LinkNode<T> pointer = first;
+			
+			public boolean hasNext(){
+				return this.pointer != null;
+			}
+
+			@Override
+			public T next() {
+				T el = pointer.getEl();
+				pointer = pointer.getNext();
+				return el;
+			}			
+		};
+	}	
 }

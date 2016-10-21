@@ -1,0 +1,16 @@
+package Chap3;
+
+import DataStructures.Stack;
+
+public class Ex4 {
+	public static <T extends Comparable<T>> void hanoi(Stack<T> a, Stack<T> b, Stack<T> c, int n){
+		if(n<=0)
+			return;
+		hanoi(a,c,b,n-1);
+		c.push(a.pop());		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

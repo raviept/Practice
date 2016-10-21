@@ -1,0 +1,35 @@
+package DataStructures;
+
+import Exceptions.EmptyStackException;
+
+public class StackWMin<T extends Comparable<T>> extends Stack<T>{
+	private Stack<T> min = new Stack<>();
+	
+	@Override
+	public void push(T el){
+		super.push(el);
+
+		try{
+			if(min.isEmpty() || min.peek().compareTo(el) >= 0){
+				min.push(el);
+			}
+		}
+		catch(EmptyStackException e){
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public T pop() throws EmptyStackException{
+		T el = super.pop();
+		if(el.compareTo(min.peek()) == 0)
+			min.pop();
+		
+		return el;
+	}
+	
+	public T min() throws EmptyStackException{
+		return this.min.peek();
+	}
+
+}

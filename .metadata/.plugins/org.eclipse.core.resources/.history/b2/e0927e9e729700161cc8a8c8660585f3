@@ -1,0 +1,20 @@
+package DataStructures;
+
+import Exceptions.EmptyStackException;
+
+public class StackWMin<T extends Comparable<T>> extends Stack<T>{
+	private Stack<T> min;
+	
+	@Override
+	public void push(T el){
+		
+	}
+	
+	public T min() throws EmptyStackException{
+		if(this.isEmpty())
+			throw new EmptyStackException("The stack is empty!");
+		
+		return this.min.getEl();
+	}
+
+}

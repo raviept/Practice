@@ -1,0 +1,64 @@
+package DataStructures;
+
+import java.util.Iterator;
+
+import Exceptions.EmptyStackException;
+
+public class Stack<T extends Comparable<T>> implements DataStructure<T>{
+	LinkNode<T> head = null;
+	LinkNode<T> min = null;
+	
+	public void push(T el){
+		LinkNode<T> next = head, prevMin = min;
+		head = new LinkNode<T>(el);
+		head.setNext(next);
+		T m = (min == null || min.getEl().compareTo(el) >0)? el : min.getEl();
+		min = new LinkNode<T>(m);
+		min.setNext(prevMin);
+	}
+	
+	public T pop() throws EmptyStackException{
+		if(this.isEmpty())
+			throw new EmptyStackException("The stack is empty!");
+		T el = this.head.getEl();
+		this.head = this.head.getNext();
+		this.min = this.min.getNext();
+		
+		return el;
+	}
+	
+	public T peek() throws EmptyStackException{
+		if(this.isEmpty())
+			throw new EmptyStackException("The stack is empty!");
+		
+		return this.head.getEl();
+	}
+	
+	public T min() throws EmptyStackException{
+		if(this.isEmpty())
+			throw new EmptyStackException("The stack is empty!");
+		
+		return this.min.getEl();
+	}
+	
+	public boolean isEmpty(){
+		return this.head == null;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new Iterator<T>(){
+			LinkNode<T> pointer = head;
+			
+			public boolean hasNext(){
+				return this.pointer != null;
+			}
+
+			@Override
+			public T next() {
+				// TODO Auto-generated method stub
+				return null;
+			}			
+		};
+	}	
+}

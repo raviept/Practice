@@ -7,10 +7,10 @@ import java.util.Map;
 
 import Exceptions.FullStackException;
 
-public class KStack<T> {
+public class KStack<K,T> {
 	private T []stack;
 	private int [] prev;
-	private Map<Integer,Integer> stacksLast = new HashMap<>();
+	private Map<K,Integer> stacksLast = new HashMap<>();
 	private Queue<Integer> free = new Queue<>();
 	
 	@SuppressWarnings("unchecked")
@@ -23,19 +23,19 @@ public class KStack<T> {
 			free.add(i);
 	}
 	
-	public void push(int stackN, T val) throws FullStackException{
+	public void push(K stackN, T val) throws FullStackException{
 		if(free.isEmpty())
 			throw new FullStackException("No more space!");
 		int pos = free.dequeue();
 		if(stacksLast.containsKey(stackN)){
-			int last = stacksLast.get(stackN);			
+			int last = stacksLast.get(stackN);
 			prev[pos] = last;
 			stack[pos] = val;			
 		}
 		stacksLast.put(stackN, pos);
 	}
 	
-	public T pop(int stackN) throws EmptyStackException{
+	public T pop(K stackN) throws EmptyStackException{
 		if(!stacksLast.containsKey(stackN))
 			throw new EmptyStackException();
 		int last = stacksLast.get(stackN);
@@ -49,7 +49,7 @@ public class KStack<T> {
 		return stack[last];
 	}
 	
-	public T peek(int stackN) throws EmptyStackException{
+	public T peek(K stackN) throws EmptyStackException{
 		if(!stacksLast.containsKey(stackN))
 			throw new EmptyStackException();
 		int last = stacksLast.get(stackN);
@@ -57,7 +57,7 @@ public class KStack<T> {
 		return stack[last];
 	}
 	
-	public boolean isEmpty(int stackN){
+	public boolean isEmpty(K stackN){
 		return stacksLast.containsKey(stackN);
 	}
 }

@@ -2,6 +2,7 @@ package Prints;
 
 import java.util.Iterator;
 
+import DataStructures.DataStructure;
 import DataStructures.LinkNode;
 
 public class Prints {
@@ -28,6 +29,16 @@ public class Prints {
 		
 		while(iter.hasNext()){
 			System.out.print(iter.next() + " ");
+		}
+		
+		System.out.println("");
+	}
+	
+	public static <T> void printData(DataStructure<T> data){
+		if(data == null)
+			return;
+		for(T el : data){
+			System.out.print(el + " ");
 		}
 		
 		System.out.println("");

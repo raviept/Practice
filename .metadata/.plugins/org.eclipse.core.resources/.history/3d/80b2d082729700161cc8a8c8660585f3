@@ -1,0 +1,13 @@
+package DataStructures;
+
+import Exceptions.EmptyStackException;
+
+public class StackWMin<T> extends Stack<T>{
+	public T min() throws EmptyStackException{
+		if(this.isEmpty())
+			throw new EmptyStackException("The stack is empty!");
+		
+		return this.min.getEl();
+	}
+
+}

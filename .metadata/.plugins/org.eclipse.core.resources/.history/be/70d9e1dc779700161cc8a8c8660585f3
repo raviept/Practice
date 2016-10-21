@@ -1,0 +1,7 @@
+package DataStructures;
+
+public class SetOfStacks<T> extends DataSTructure<T>{
+	private int maxSize;
+	private ArrayList<T[]>
+	
+}

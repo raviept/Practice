@@ -1,0 +1,34 @@
+package DataStructures;
+
+import Exceptions.EmptyStackException;
+
+public class Stack<T> {
+	LinkNode<T> head = null;
+	
+	public void push(T el){
+		LinkNode<T> next = head;
+		head = new LinkNode<T>(el);
+		head.setNext(next);
+	}
+	
+	public T pop(){
+		T el = null;
+		if(head != null){
+			el = head.getEl();
+			head = head.getNext();
+		}
+		return el;
+	}
+	
+	public T peek() throws EmptyStackException{
+		T el = null;
+		if(head != null){
+			el = head.getEl();
+		}
+		return el;
+	}
+	
+	public boolean isEmpty(){
+		return this.head == null;
+	}
+}

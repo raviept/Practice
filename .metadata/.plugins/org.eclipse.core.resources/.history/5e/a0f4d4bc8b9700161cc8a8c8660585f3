@@ -1,0 +1,9 @@
+package DataStructures;
+
+public interface DataStructure<T> extends Iterable<T> {
+	private int size;
+	
+	public boolean isEmpty();
+	
+	public int size();
+}

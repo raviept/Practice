@@ -1,0 +1,5 @@
+package DataStructures;
+
+public interface DataStructure<T> extends Iterable<T> {
+	
+}

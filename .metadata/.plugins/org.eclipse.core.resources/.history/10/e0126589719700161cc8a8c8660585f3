@@ -1,0 +1,15 @@
+package Chap3;
+
+import DataStructures.Stack;
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex2 {
+
+	public static void main(String []args){
+		Stack<Integer> stack = RandGen.genStack(5, 20);
+		Prints.printData(stack);
+		
+		
+	}
+}

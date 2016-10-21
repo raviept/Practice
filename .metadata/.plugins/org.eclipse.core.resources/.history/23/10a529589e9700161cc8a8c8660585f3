@@ -1,0 +1,41 @@
+package Chap3;
+
+import DataStructures.Stack;
+import Exceptions.EmptyStackException;
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex6 {
+	public static <T extends Comparable<T>> void sort(Stack<T> st){
+		if(st.isEmpty())
+			return;
+		
+		try{
+			boolean change;
+
+			Stack<T> aux = new Stack<>();
+			do{
+				change = false;
+				aux.push(st.pop());
+				while(!st.isEmpty() && aux.peek().compareTo(st.peek()) <= 0){
+					aux.push(st.pop());
+				}
+				if(!st.isEmpty()){
+					change = true;
+					T val = st.pop();
+					st.push(aux.pop());
+					st.push(val);
+				}
+			}while(change);
+		}
+		catch(EmptyStackException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String []args){
+		Stack<Integer> st = RandGen.gentStack(10, 20);
+		Prints.printData(st);
+				
+	}
+}
