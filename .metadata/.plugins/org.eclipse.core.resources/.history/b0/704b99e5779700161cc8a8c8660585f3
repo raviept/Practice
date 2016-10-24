@@ -1,9 +1,0 @@
-package DataStructures;
-
-import java.util.ArrayList;
-
-public class SetOfStacks<T> extends DataStructure<T>{
-	private int maxSize;
-	private ArrayList<T[]> arrStack = new ArrayList<>();
-	
-}

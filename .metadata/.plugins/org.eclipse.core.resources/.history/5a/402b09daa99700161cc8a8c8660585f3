@@ -1,0 +1,70 @@
+package DataStructures;
+
+public class BSTreeNode<K extends Comparable<K>,T> {
+	private BSTreeNode<K,T> left, right;
+	private T data;
+	private K key;
+	
+	public BSTreeNode(K key, T data){
+		this.data = data;
+		this.key = key;
+	}
+	
+	public T getData(){
+		return this.data;
+	}
+	
+	public K getKey(){
+		return this.key;
+	}
+	
+	public void add(K key, T data){
+		if(key.compareTo(this.key) <= 0){
+			if(this.left == null){
+				this.left = new BSTreeNode<>(key,data);				
+			}
+			else
+				this.left.add(key,data);
+		}
+		else{
+			if(this.right == null){
+				this.right = new BSTreeNode<>(key,data);
+			}
+			else
+				this.right.add(key,data);
+		}
+	}
+	
+	public static <K extends Comparable<K>,T> BSTreeNode<K,T> remove(BSTreeNode<K,T> root, K key){
+		if(root == null)
+			return null;
+		
+		BSTreeNode<K,T> left = remove(root.left, key);
+		if(root.key.compareTo(key) == 0){
+			if(left == null)
+				return root.right;
+			if(left.right == null){
+				left.right = root.right;
+				return left;
+			}
+			BSTreeNode<K,T> prev = left, ahead = left.right;
+			while(ahead.right != null){
+				prev = ahead;
+				ahead = ahead.right;
+			}
+			ahead.right = root.right;
+			prev.right = ahead.left;
+			ahead.left = left;
+			
+			return ahead;
+		}
+		
+		root.left = left;
+				
+		return root;	
+	}
+	
+	public void inOrder(List<T> list){
+		
+	}
+}

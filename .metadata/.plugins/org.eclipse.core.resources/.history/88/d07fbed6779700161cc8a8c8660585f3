@@ -1,7 +1,0 @@
-package DataStructures;
-
-public class SetOfStacks extends DataSTructure{
-	private int maxSize;
-	private 
-	
-}

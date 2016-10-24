@@ -1,7 +1,0 @@
-package Chap3;
-
-public class Ex6 {
-	public static <T extends Comparable<T>> void sort(){
-		
-	}
-}

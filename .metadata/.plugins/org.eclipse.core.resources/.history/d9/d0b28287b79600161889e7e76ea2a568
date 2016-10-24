@@ -1,7 +1,0 @@
-package Chap2;
-
-public class Ex4 {
-	public static LinkNode<T> sum(){
-		
-	}
-}

@@ -1,7 +1,0 @@
-package DataStructures;
-
-public class QueueNode<T> {
-	LinkNode<T> head = null;
-	
-	
-}

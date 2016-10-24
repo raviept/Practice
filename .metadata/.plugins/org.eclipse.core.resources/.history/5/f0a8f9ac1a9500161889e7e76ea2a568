@@ -1,8 +1,0 @@
-package Sort;
-
-public class QuickSort {
-
-	public static <T> void quickSort(T [] arr){
-		
-	}
-}

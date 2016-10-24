@@ -1,9 +1,0 @@
-package Chap2;
-
-import DataStructures.LinkNode;
-
-public class Ex4 {
-	public static LinkNode<Integer> sum(LinkNode<Integer> a, LinkNode<Integer> b){
-		return null;
-	}
-}

@@ -1,0 +1,77 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Graph<T extends Comparable<T>>{
+	private Map<T,LinkNode<T>> links = new HashMap<>();
+	
+	public void addEdge(T a, T b){
+		LinkNode<T> node = new LinkNode<>(b);
+		if(!links.containsKey(a))
+			links.put(a,node);
+		else{
+			LinkNode<T> prev = links.get(a);
+			while(prev.getNext() != null && prev.getEl().compareTo(b) != 0)
+				prev = prev.getNext();
+			if(prev.getEl().compareTo(b) != 0){
+				prev.setNext(node);
+			}
+		}
+	}
+	
+	public void removeEdge(T a, T b){
+		if(!links.containsKey(a))
+			return;
+		LinkNode<T> prev = links.get(a);
+		if(prev.getEl().compareTo(b) == 0)
+			links.put(a, prev.getNext());
+		else{
+			LinkNode<T> ahead = prev.getNext();
+			while(ahead != null && ahead.getEl().compareTo(b) != 0){
+				prev = ahead;
+				ahead = ahead.getNext();
+			}
+			if(ahead != null)
+				prev.setNext(ahead.getNext());
+		}
+	}
+	
+	public List<T> BFS(T root){
+		List<T> list = new ArrayList<>();		
+		Queue<T> queue = new Queue<>();
+		Set<T> seen = new HashSet<>();
+		seen.add(root);
+		queue.enqueue(root);
+		do{
+			root = queue.dequeue();
+			list.add(root);
+			if(links.containsKey(root)){
+				LinkNode<T> node = links.get(root);
+				while(node != null){
+					if(!seen.contains(node.getEl())){
+						queue.enqueue(node.getEl());
+						seen.add(node.getEl());
+					}						
+					node = node.getNext();
+				}
+			}
+		}while(!queue.isEmpty());
+		
+		return list;
+	}
+	
+	
+	public List<T> DFS(T root){
+		List<T> list = new ArrayList<>();
+		Set<T> seen = new HashSet<>();
+		Stack<T> st = new Stack<>();
+		st.push(root);
+		
+		return list;
+	}
+}

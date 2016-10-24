@@ -1,0 +1,99 @@
+package DataStructures;
+
+public class AVLNode<K extends Comparable<K>,T> {
+	private AVLNode<K,T> left, right;
+	private int bal = 0;
+	private T data;
+	private K key;
+	
+	public AVLNode(K key,T data){
+		this.data = data;
+		this.key = key;
+	}
+	
+	public T getData(){
+		return this.data;
+	}
+	
+	public K getKey(){
+		return this.key;
+	}
+	
+	private static int boolToInt(boolean f){
+		return (f)? 1 : 0;
+	}
+	
+	private static <K extends Comparable<K>,T> AVLNode<K,T> rotateRight(AVLNode<K,T> root){
+		AVLNode<K,T> l = root.left;
+	    root.left = l.right;
+	    l.right = root;
+	    
+	    int dr = 0;
+	    int dlr = (-1)*root.bal - 1 - boolToInt(l.bal < 0);
+	    int dll = (-1)*root.bal - 1 - boolToInt(l.bal > 0);
+	    		
+	    root.bal = dlr - dr;
+	    l.bal = dll - (1 + dr);
+		
+		return l;
+	}
+	
+	private static <K extends Comparable<K>,T> AVLNode<K,T> rotateLeft(AVLNode<K,T> root){
+		AVLNode<K,T> r = root.right;
+	    root.right = r.left;
+	    r.left = root;
+	    
+	    int dl = 0;
+	    int drl = root.bal - 1 - boolToInt(r.bal > 0);
+	    int drr = root.bal - 1 - boolToInt(r.bal < 0);
+
+	    root.bal = dl - drl;
+	    r.bal = (1 + dl) - drr;
+	    
+		return r;
+	}
+	
+	public static <K extends Comparable<K>,T> AVLNode<K,T> add(AVLNode<K,T> root, K key, T data){
+		if(root == null)
+			return new AVLNode<K,T>(key,data);
+		
+		if(root.key.compareTo(key) >= 0){
+			int b = (root.left != null)? root.left.bal : 1;
+			AVLNode<K,T> l = add(root.left,key,data);
+			if(b != l.bal){
+				if(l.bal > 0){
+					root.left = rotateLeft(root.left);
+				}
+				root = rotateRight(root);			
+			}
+		}
+		else{
+			int b = (root.right != null)? root.right.bal : 1;
+			AVLNode<K,T> r = add(root.right,key,data);
+			if(b != r.bal){
+				if(r.bal < 0){
+					r = rotateRight(r);
+				}
+				root = rotateLeft(r);
+			}
+		}
+		
+		return root;
+	}
+	
+	public int depth(){
+		int dl = (this.left == null)? 0 : this.left.depth();
+		int dr = (this.right == null)? 0 : this.right.depth();
+		
+		return 1 + ((dr > dl)? dr : dl);
+	}
+	
+	@Override
+	public String toString(){
+		int dpt = this.depth();
+		
+		
+		
+		return "";
+	}
+}

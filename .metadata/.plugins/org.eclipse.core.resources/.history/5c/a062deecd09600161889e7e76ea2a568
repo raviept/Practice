@@ -1,7 +1,0 @@
-package Chap2;
-
-public class Ex5 {
-	public static <T> LinkedNode<T>	startCycle(){
-		
-	}
-}
