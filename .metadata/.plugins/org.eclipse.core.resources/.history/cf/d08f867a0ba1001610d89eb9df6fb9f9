@@ -1,0 +1,38 @@
+package Chap7Ex7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import DataStructures.Queue;
+
+public class Conversation {
+	private List<User> participants = new ArrayList<>();
+	private List<Message> sent = new ArrayList<>();
+	private Queue<Message> toBeSent = new Queue<>();
+	private ProcessMessages processor; 
+	
+	public Conversation(){
+		processor = new ProcessMessages();
+	}
+	
+	public void addParticipant(User user){
+		this.participants.add(user);
+	}
+	
+	public void send(Message message){
+		this.toBeSent.enqueue(message);
+	}
+	
+	private class ProcessMessages implements Runnable{
+		public void run(){
+			while(true){
+				Message message = toBeSent.dequeue();
+				for(User user : participants){
+					if(!user.equals(message.getSource()))
+						user.send(message);
+				}
+				sent.add(message);				
+			}
+		}
+	}
+}

@@ -1,0 +1,115 @@
+package DataStructures;
+
+import java.util.List;
+
+public class BSTreeNode<K extends Comparable<K>,T> {
+	private BSTreeNode<K,T> left, right;
+	private T data;
+	private K key;
+	
+	public BSTreeNode(K key, T data){
+		this.data = data;
+		this.key = key;
+	}
+	
+	public T getData(){
+		return this.data;
+	}
+	
+	public K getKey(){
+		return this.key;
+	}
+	
+	public void add(K key, T data){
+		if(key.compareTo(this.key) <= 0){
+			if(this.left == null){
+				this.left = new BSTreeNode<>(key,data);				
+			}
+			else
+				this.left.add(key,data);
+		}
+		else{
+			if(this.right == null){
+				this.right = new BSTreeNode<>(key,data);
+			}
+			else
+				this.right.add(key,data);
+		}
+	}
+	
+	public static <K extends Comparable<K>,T> BSTreeNode<K,T> remove(BSTreeNode<K,T> root, K key){
+		if(root == null)
+			return null;
+		
+		BSTreeNode<K,T> left = remove(root.left, key);
+		if(root.key.compareTo(key) == 0){
+			if(left == null)
+				return root.right;
+			if(left.right == null){
+				left.right = root.right;
+				return left;
+			}
+			BSTreeNode<K,T> prev = left, ahead = left.right;
+			while(ahead.right != null){
+				prev = ahead;
+				ahead = ahead.right;
+			}
+			ahead.right = root.right;
+			prev.right = ahead.left;
+			ahead.left = left;
+			
+			return ahead;
+		}
+		
+		root.left = left;
+				
+		return root;	
+	}
+	
+	public void inOrder(List<T> list){
+		if(this.left != null)
+			this.left.inOrder(list);
+		list.add(this.data);
+		if(this.right != null)
+			this.right.inOrder(list);
+	}
+	
+	public int maxDepth(){
+		int dl = (this.left != null)? this.left.maxDepth() : 0;
+		int dr = (this.right != null)? this.right.maxDepth() : 0;
+		return 1+ Math.max(dl, dr);
+	}
+	
+	public int minDepth(){
+		int dl = (this.left != null)? this.left.minDepth() : 0;
+		int dr = (this.right != null)? this.right.minDepth() : 0;
+		return 1+ Math.min(dl, dr);
+	}
+	
+	public boolean isBalanced(){
+		return ((this.maxDepth() - this.minDepth()) <= 1);
+	}
+
+	public void as2DMat(List<BSTreeNode<K, T>> arr, int l, int i, int dpt) {
+		if(l >= dpt)
+			return;
+		int sp = (1<<dpt -1)/(1<<(l+1));
+		int pos = sp + i*2*(sp + 1);
+		arr.set(pos, this);
+		if(this.left != null)
+			this.left.as2DMat(arr, l+1, 2*i, dpt);
+		if(this.right != null)
+			this.left.as2DMat(arr, l+1, 2*i+1, dpt);
+	}
+
+	public static <K extends Comparable<K>,T> BSTreeNode<K, T> fromArray(T[] arr, int pos, int size) {
+		if(size <= 0)
+			return null;
+		
+		int mid = pos + size/2;
+		BSTreeNode<K,T> node = new BSTreeNode<K,T>(null,arr[mid]);
+		
+		
+		return node;
+	}
+}

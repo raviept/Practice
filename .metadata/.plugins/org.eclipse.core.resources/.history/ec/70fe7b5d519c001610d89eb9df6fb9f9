@@ -1,0 +1,19 @@
+package Chap5;
+
+public class Ex1 {
+	public int copy(int n, int m, int i, int j){
+		if(j<i) return n;
+		int flag = 0;
+		for(int x = i; x <= j; x++)
+			flag = (flag<<1)| 0x1;
+		flag = ~(flag << i);
+		return (n&flag)|(m << i);
+	}
+	
+	public static void main(String [] args){
+		int n = 10, m = 3;
+		System.out.println(n);
+		System.out.println(m);
+		System.out.println(copy);
+	}
+}

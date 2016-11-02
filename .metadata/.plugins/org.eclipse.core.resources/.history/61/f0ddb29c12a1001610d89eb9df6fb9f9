@@ -1,0 +1,31 @@
+package Othello;
+
+public class Board {
+	private Piece [][] pieces;
+	private int numWhite;
+	private int numBlack;
+	
+	public Board(){
+		this.pieces =  new Piece[8][8];
+		
+		this.pieces[3][3] = new Piece(Piece.Color.WHITE);
+		this.pieces[3][4] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][3] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][4] = new Piece(Piece.Color.WHITE);
+		
+		this.numBlack = this.numWhite = 2;		
+	}
+	
+	public int getNumWhite(){
+		return this.numWhite;
+	}
+	
+	public int getNumBlack(){
+		return this.numBlack;
+	}
+	
+	public boolean isMoveValid(Piece.Color color, Point p1){
+		
+		
+	}
+}

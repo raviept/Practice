@@ -1,0 +1,8 @@
+package Chap7Ex4;
+
+public class Horse implements Piece{
+	public boolean isMoveValid(Point sour, Point dest, boolean kill){
+		int dx = Math.abs(dest.getX() - sour.getX());
+		int dx = Math.abs(dest.getY() - sour.getY());
+	}
+}

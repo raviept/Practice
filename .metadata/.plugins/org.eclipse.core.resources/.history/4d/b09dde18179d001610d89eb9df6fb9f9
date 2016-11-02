@@ -1,0 +1,15 @@
+package Chap5;
+
+import java.util.Random;
+
+public class Ex6 {
+
+	public static int swapOdEv(int n){
+		return ((n << 1) & 0x22222222) | ((n>>1) & 0x11111111);
+	}
+	
+	public static void main(String []args){
+		Random rand = new Random();
+		rand.nextInt(200);
+	}
+}

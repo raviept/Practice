@@ -1,0 +1,12 @@
+package Chap5;
+
+public class Ex3 {
+	public static int getBit(int n, int index){
+		return n & (0x1 << index) 
+	}
+	
+	public static void printNextSameOnes(int n){
+		
+	}
+	
+}

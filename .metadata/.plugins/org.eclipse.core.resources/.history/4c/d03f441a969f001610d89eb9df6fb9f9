@@ -1,0 +1,11 @@
+package Chap7Ex4;
+
+public class King extends Piece {
+
+	@Override
+	public boolean isMoveValid(Board board, Point source, Point dest) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

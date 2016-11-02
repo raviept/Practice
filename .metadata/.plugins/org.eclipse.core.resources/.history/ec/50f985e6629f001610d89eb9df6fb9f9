@@ -1,0 +1,45 @@
+package Chap7Ex2;
+
+import java.util.ArrayList;
+import java.util.List;
+import DataStructures.Stack;
+
+public class CallCenter {
+	private TL tl;
+	private PM pm;
+	private List<Fresher> freshers = new ArrayList<>();
+	private Stack<Fresher> freeFreshers = new Stack<>();
+	
+	public CallCenter(TL tl, PM pm){
+		this.tl = tl;
+		this.pm = pm;
+	}
+	
+	public void addFresher(Fresher fresher){
+		this.freshers.add(fresher);
+	}
+	
+	public Employee getCallHandler(){
+		Employee handler = null;
+		if(!freeFreshers.isEmpty())
+			handler = freeFreshers.pop();
+		else if(!pm.isBusy())
+			handler = pm;
+		else if(!tl.isBusy())
+			handler = tl;
+		else
+			throw new IllegalStateException();
+		
+		return handler;
+	}
+	
+	public void finishHandling(Employee handler){
+		if(handler == null)
+			return;
+		
+		if(handler.getClass().isInstance(Fresher.class)){
+			Fresher fresher = (Fresher)handler;
+			
+		}
+	}
+}

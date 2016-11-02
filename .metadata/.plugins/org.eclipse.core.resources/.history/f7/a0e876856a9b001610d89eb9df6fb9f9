@@ -1,0 +1,14 @@
+package Chap4;
+
+import DataStructures.AVL;
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex3 {
+	public static void main(String []args){
+		int [] arr = RandGen.genOrderedArray(10,50);
+		Prints.printArr(arr);
+		
+		AVL<Integer,Integer> avl = AVL.treeFromArray(arr);
+	}
+}

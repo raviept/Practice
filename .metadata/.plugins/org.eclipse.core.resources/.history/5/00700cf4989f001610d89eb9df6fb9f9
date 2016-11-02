@@ -1,0 +1,25 @@
+package Chap7Ex4;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bishop extends Piece{
+	public Bishop(Color color){
+		super(color);
+	}
+	
+	public boolean isMoveValid(Board board, Point sour, Point dest){
+		int dx = dest.getX() - sour.getX();
+		int dy = dest.getY() - sour.getY();
+		
+		if(Math.abs(dx) != Math.abs(dy) || dx == 0)
+			return false;
+		
+		List<Point> path = new ArrayList<>();
+		int dirx = (int)Math.signum(dx);
+		int diry = (int)Math.signum(dy);
+		
+		
+		return board.free(path);
+	}
+}

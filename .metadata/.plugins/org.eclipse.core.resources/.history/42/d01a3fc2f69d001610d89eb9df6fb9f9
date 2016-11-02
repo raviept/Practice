@@ -1,0 +1,12 @@
+package Chap7;
+
+public class Carta {
+	public static enum Naipe{
+		Espadas,
+		Copas,
+		Paus,
+		Ouros
+	}
+	
+	public 
+}

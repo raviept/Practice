@@ -1,0 +1,15 @@
+package Chap7Ex7;
+
+import java.net.InetAddress;
+
+public class User {
+
+	private String nick;
+	private InetAddress address;
+	
+	public User(String nick, InetAddress address){
+		this.nick = nick;
+		this.address = address;
+	}
+	
+}

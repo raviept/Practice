@@ -1,0 +1,13 @@
+package Othello;
+
+public class Piece {
+	public static enum Color{
+		WHITE,
+		BLACK,
+		
+		public Color flip(){
+			
+		}
+	}
+	
+}

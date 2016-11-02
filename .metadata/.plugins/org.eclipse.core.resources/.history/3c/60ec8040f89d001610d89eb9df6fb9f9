@@ -1,0 +1,32 @@
+package Chap7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Baralho {
+	private List<Carta> cartas = new ArrayList<Carta>();
+	
+	private Baralho(){
+		
+	}
+	
+	public void shuffle(int iter){
+		Random rand = new Random();
+		for(int i = 0; i < iter; i++){
+			int a = rand.nextInt(cartas.size());
+			int b = rand.nextInt(cartas.size())
+		}
+	}
+	
+	public static Baralho newBaralhoDeSueca(){
+		Baralho bar = new Baralho();
+		for(Carta.Tipo tipo : Carta.Tipo.values()){
+			for(Carta.Naipe naipe : Carta.Naipe.values()){
+				bar.cartas.add(new Carta(naipe,tipo));
+			}
+		}
+		
+		return bar;
+	}
+}

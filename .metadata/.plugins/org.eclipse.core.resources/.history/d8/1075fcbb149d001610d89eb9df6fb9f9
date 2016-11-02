@@ -1,0 +1,14 @@
+package Chap5;
+
+public class Ex5 {
+	public static int numBitsChange(int x, int y){
+		x = x^y;
+		int c = 0;
+		for(int i = 0; i < 32; i++)
+			c += ((x&(0x1 << i))!=0)? 1 : 0;
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

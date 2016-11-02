@@ -1,0 +1,59 @@
+package Prints;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import DataStructures.DataStructure;
+import DataStructures.LinkNode;
+
+public class Prints {
+	public static void printArr(int []arr){
+		for(int i = 0; i < arr.length; i++){
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+	
+	public static void printMat(int [][]mat, int m, int n){
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < m; j++){
+				System.out.print(mat[i][j] + " ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	public static void printLittleEndian(int n){
+		ArrayList<Integer> arr = new ArrayList<>();
+		while(n != 0){
+			int b = n%2;
+			arr.add(b);
+			n = n>>1;
+		}
+		for(int i = arr.size() - 1; i>= 0; i--){
+			System.out.print();
+		}
+	}
+	
+	public static <T> void printList(LinkNode<T> head){
+		if(head == null)
+			return;
+		Iterator<T> iter = head.iterator();
+		
+		while(iter.hasNext()){
+			System.out.print(iter.next() + " ");
+		}
+		
+		System.out.println("");
+	}
+	
+	public static <T> void printData(DataStructure<T> data){
+		if(data == null)
+			return;
+		for(T el : data){
+			System.out.print(el + " ");
+		}
+		
+		System.out.println("");
+	}
+}

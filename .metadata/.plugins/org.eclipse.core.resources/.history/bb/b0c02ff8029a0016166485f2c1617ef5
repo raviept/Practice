@@ -1,0 +1,152 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+
+import Mix.StringUtils;
+
+public final class AVL<K extends Comparable<K>,T> implements MyMap<K,T>{
+	private AVLNode<K,T> root;
+	private int size = 0;
+	
+	public void put(K key,T data){
+		if(!this.containsKey(key))
+			this.size++;
+		this.root = AVLNode.put(root, key, data);
+	}
+	
+	public void remove(K key){
+		if(this.containsKey(key))
+			this.size--;		
+		root = AVLNode.remove(root, key);
+	}
+	
+	public int depth(){
+		if(root == null)
+			return 0;
+		else
+			return this.root.depth();			
+	}
+	
+	@Override
+	public int size() {
+		return this.size;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return (this.size == 0);
+	}
+
+	@Override
+	public boolean containsKey(K key) {
+		if(this.root == null)
+			return false;
+		return (this.root.search(key) != null);
+	}
+	
+	@Override
+	public T get(K key){
+		if(this.root == null)
+			throw new EmptyTreeException("No such key exists!");
+		AVLNode<K,T> node = this.root.search(key);
+		if(node == null)
+			throw new EmptyTreeException("No such key exists!");
+		
+		return node.getData();
+	}
+	
+	@Override
+	public Set<K> keySet() {
+		Set<K> set = new HashSet<>();
+		if(this.isEmpty())
+			return set;
+		List<AVLNode<K,T>> auxList = new ArrayList<>();
+		this.root.inOrder(auxList);
+		for(AVLNode<K,T> node : auxList)
+			set.add(node.getKey());
+		return set;
+	}
+
+	@Override
+	public List<T> values() {
+		List<T> list = new ArrayList<>();
+		if(this.isEmpty())
+			return list;
+		List<AVLNode<K,T>> auxList = new ArrayList<>();
+		this.root.inOrder(auxList);
+		for(AVLNode<K,T> node : auxList)
+			list.add(node.getData());
+		
+		return list;
+	}
+	
+	private String stringRep(List<AVLNode<K,T>> arr, int dpt){
+		StringBuilder sb = new StringBuilder();
+		int sp = arr.size()/2;
+		for(int i = 0; i < dpt; i++){
+			int k = sp;
+			for(int j = 0; j < arr.size(); j++){
+				if(j == k){
+					sb.append(StringUtils.center("|",9));
+					k += 2*(sp + 1);
+				}
+				else{
+					sb.append(StringUtils.center("",9));
+				}
+			}
+			sb.append(System.lineSeparator());
+			k = sp;
+			for(int j = 0; j < arr.size(); j++){
+				if(j == k){
+					AVLNode<K,T> node = arr.get(j);
+					String val = (node!=null)? node.toString() : ".";
+					sb.append(StringUtils.center(val, 9));
+					k += 2*(sp + 1);
+				}
+				else{
+					sb.append(StringUtils.center("", 9));
+				}
+			}
+			sb.append(System.lineSeparator());
+			sp = sp/2;
+		}
+		
+		return sb.toString();
+	}
+		
+	@Override
+	public String toString(){
+		if(this.isEmpty())
+			return "";
+		int dpt = this.depth();
+		System.out.println("Depth "+ dpt);
+		int size = (1<<dpt) - 1;
+		ArrayList<AVLNode<K,T>> arr = new ArrayList<>(size);
+		for(int i = 0; i < size; i++){
+			arr.add(null);
+		}
+		
+		this.root.preOrderFill(arr, 0, size);
+		return stringRep(arr,dpt);
+	}
+	
+	public static void main(String []args){
+		AVL<Integer,String> avl = new AVL<>();
+		Scanner scan = new Scanner(System.in);
+		String data;
+		do{
+			int key = Integer.parseInt(scan.nextLine());
+			data = scan.nextLine();
+			avl.put(key,data);
+			System.out.println();
+			System.out.println("---------------------------------------------------------------------");
+			System.out.println(avl);			
+			System.out.println();
+		}while(!data.equals("q"));
+		scan.close();
+	}	
+}

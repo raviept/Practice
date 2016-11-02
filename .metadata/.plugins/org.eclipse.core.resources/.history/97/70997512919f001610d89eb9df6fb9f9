@@ -1,0 +1,9 @@
+package Chap7Ex4;
+
+public class Pawn extends Piece{
+	public boolean isMoveValid(Point sour, Point dest, boolean kill){
+		if(kill){
+			return ((dest.getX() - sour.getX()) == 1)
+		}
+	}
+}

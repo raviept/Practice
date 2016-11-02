@@ -1,0 +1,8 @@
+package Chap7;
+
+import java.util.List;
+
+public class Jogador {
+	private List<Carta> mao;
+	
+}

@@ -1,0 +1,34 @@
+package DataStructures;
+
+import java.util.Iterator;
+
+public class AVL<K extends Comparable<K>,T> implements DataStructure<T>{
+	private AVLNode<K,T> root;
+	private int size;
+	
+	public void put(K key,T data){
+		this.root = AVLNode.put(root, key, data);
+	}
+	
+	public void remove(){
+		
+	}
+
+	@Override
+	public Iterator iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

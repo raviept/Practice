@@ -1,0 +1,40 @@
+package Chap7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Sueca extends Jogo{
+	private static int MAX_ITER = 40;
+	private int turn = 0;
+
+	
+	
+	public Sueca(List<Jogador> jogadores){
+		super.baralho = Baralho.newBaralhoDeSueca();
+		if(jogadores.size() != 4)
+			throw new IllegalArgumentException("Um jogo de sueca requer 4 jogadores!");
+		super.jogadores = new ArrayList<>();
+		this.jogadores.addAll(jogadores);
+	}
+	
+	public void distributeCards(boolean up){
+		this.baralho.shuffle(MAX_ITER);
+		
+		int j = (up)? 1 : 0;
+		int numCards = baralho.size();
+		for(int i = 0; i < numCards; i++){
+			if(up){
+				jogadores.get(j).addToMao(baralho.nextUp());
+				j = (j + 1)%4;
+			}
+			else{
+				jogadores.get(j).addToMao(baralho.nextDown());
+				j = (j + 3)%4;
+			}
+		}
+	}
+	
+	public void play(){
+		
+	}
+}

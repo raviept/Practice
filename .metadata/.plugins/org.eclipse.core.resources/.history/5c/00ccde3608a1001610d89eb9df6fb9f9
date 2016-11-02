@@ -1,0 +1,8 @@
+package Chap7Ex7;
+
+public class User {
+
+	private String nick;
+	private InetAddress address;
+	
+}

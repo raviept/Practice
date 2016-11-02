@@ -1,0 +1,8 @@
+package Chap7;
+
+public class Sueca extends Jogo{
+	public Sueca(){
+		super.baralho = Baralho.newBaralhoDeSueca();
+		
+	}
+}

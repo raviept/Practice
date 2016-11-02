@@ -1,0 +1,6 @@
+package DataStructures;
+
+public interface Tree<T> {
+	public int depth();
+	
+}

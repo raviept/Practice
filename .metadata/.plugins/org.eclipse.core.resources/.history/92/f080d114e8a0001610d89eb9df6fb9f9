@@ -1,0 +1,86 @@
+package Chap7Ex4;
+
+public class Board {
+	private Piece [][] mat;
+	
+	public Board(){
+		this.mat = newChessMat();
+	}
+	
+	private static Piece[][] newChessMat(){
+		Piece[][] pieces = new Piece[8][8];
+		
+		for(int i = 0; i < 8; i++){
+			pieces[1][i] = new Pawn(Piece.Color.WHITE);
+			pieces[6][i] = new Pawn(Piece.Color.BLACK);
+		}
+		
+		pieces[0][0] = new Tower(Piece.Color.WHITE);
+		pieces[0][7] = new Tower(Piece.Color.WHITE);
+		pieces[7][0] = new Tower(Piece.Color.BLACK);
+		pieces[7][7] = new Tower(Piece.Color.BLACK);
+		
+		pieces[0][1] = new Horse(Piece.Color.WHITE);
+		pieces[0][6] = new Horse(Piece.Color.WHITE);
+		pieces[7][2] = new Horse(Piece.Color.BLACK);
+		pieces[7][6] = new Horse(Piece.Color.BLACK);
+		
+		pieces[0][2] = new Bishop(Piece.Color.WHITE);
+		pieces[0][5] = new Bishop(Piece.Color.WHITE);
+		pieces[7][2] = new Bishop(Piece.Color.BLACK);
+		pieces[7][5] = new Bishop(Piece.Color.BLACK);
+		
+		pieces[0][3] = new Queen(Piece.Color.WHITE);
+		pieces[7][4] = new Queen(Piece.Color.BLACK);
+		
+		pieces[0][4] = new King(Piece.Color.WHITE);
+		pieces[7][3] = new King(Piece.Color.BLACK);
+		
+		return pieces;
+	}
+	
+	public boolean freePoint(Point point){
+		return this.mat[point.getX()][point.getY()] == null;
+	}
+	
+	
+	
+	boolean freePath(Point sour, Point dest){
+		int dx = dest.getX() - sour.getX();
+		int dy = dest.getY() - sour.getY();
+		
+		if(dx == 0){
+			int diry = (int)Math.signum(dy);
+			for(int j = sour.getY() + diry ; j != dest.getY(); j+= diry)
+				if(this.mat[sour.getX()][j] != null)
+					return false;
+		}
+		else if(dy == 0){
+			int dirx = (int)Math.signum(dx);
+			for(int i = sour.getY() + dirx ; i != dest.getX(); i += dirx)
+				if(this.mat[i][sour.getY()] != null)
+					return false;
+		}
+		else{
+			int dirx = (int)Math.signum(dx);
+			int diry = (int)Math.signum(dy);
+			for(int i = sour.getX() + dirx, j = sour.getY() + diry; 
+					i != dest.getX(); i += dirx, j +=diry){
+				if(this.mat[i][j] != null)
+					return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	boolean underThreat(Piece.Color color, Point p){
+		for(int i = 0; i < 8){
+			for(int j = 0; j < 8; j++){
+				Piece piece = this.mat[i][j];
+				if(piece != null && piece.getColor() != color 
+						&& piece.isMoveValid(board, source, dest))
+			}
+		}
+	}
+}

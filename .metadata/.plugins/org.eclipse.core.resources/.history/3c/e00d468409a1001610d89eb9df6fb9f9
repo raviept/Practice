@@ -1,0 +1,9 @@
+package Chap7Ex7;
+
+import java.util.List;
+
+public class Conversation {
+	private List<User> participants;
+	private List<Message> messages;
+	
+}

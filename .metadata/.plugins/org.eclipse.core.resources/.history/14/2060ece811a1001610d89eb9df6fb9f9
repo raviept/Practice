@@ -1,0 +1,28 @@
+package Othello;
+
+public class Piece {
+	public static enum Color{
+		WHITE,
+		BLACK;
+		
+		public Color flip(){
+			return (this==WHITE)? BLACK : WHITE;
+		}
+	}
+	
+	private Color color;
+	
+	public Piece(Color color){
+		this.color = color;
+	}
+	
+	public void flip(){
+		this.color = this.color.flip();
+	}
+	
+	public Color getColor(){
+		return this.color;
+	}
+	
+	
+}

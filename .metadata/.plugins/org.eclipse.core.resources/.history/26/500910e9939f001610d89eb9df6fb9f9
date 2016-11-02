@@ -1,0 +1,6 @@
+package Chap7Ex4;
+
+public abstract class Piece {
+
+	public abstract boolean isMoveValid(Point source, Point dest, boolean kill);
+}

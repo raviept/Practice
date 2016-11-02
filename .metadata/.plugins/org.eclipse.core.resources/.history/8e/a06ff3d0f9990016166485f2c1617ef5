@@ -1,0 +1,5 @@
+package DataStructures;
+
+public interface MyMap<K extends Comparable<K>,T>{
+	
+}

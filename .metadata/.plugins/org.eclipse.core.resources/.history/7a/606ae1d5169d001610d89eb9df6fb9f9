@@ -1,0 +1,8 @@
+package Chap5;
+
+public class Ex6 {
+
+	public static int swapOdEv(int n){
+		
+	}
+}

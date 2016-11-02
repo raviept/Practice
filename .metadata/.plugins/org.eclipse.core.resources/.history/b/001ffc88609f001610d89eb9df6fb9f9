@@ -1,0 +1,12 @@
+package Ex1.copy;
+
+import java.util.List;
+
+public abstract class Jogo {
+	protected Baralho baralho;
+	protected List<Jogador> jogadores;
+	
+	public void addJogador(String name){
+		jogadores.add(new Jogador(name));
+	}
+}

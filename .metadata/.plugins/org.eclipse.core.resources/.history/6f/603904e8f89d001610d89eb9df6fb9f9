@@ -1,0 +1,6 @@
+package Chap7;
+
+public abstract class Jogo {
+	private Baralho baralho;
+	private List<Jogador> jogadores;
+}

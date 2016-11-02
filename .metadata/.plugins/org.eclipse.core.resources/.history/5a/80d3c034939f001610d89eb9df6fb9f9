@@ -1,0 +1,9 @@
+package Chap7Ex4;
+
+public class Board {
+	private Piece [][] pieces = new Piece[8][8];
+	
+	public Board(){
+		
+	}
+}

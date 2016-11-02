@@ -1,0 +1,78 @@
+package Othello;
+
+public class Board {
+	private static enum Direction{
+		UP(1,0),
+		LEFT_UP(1,-1),
+		RIGHT_UP(1,1),
+		RIGHT_DOWN(-1,1),
+		DOWN(-1,0),
+		LEFT_DOWN(-1,-1),
+		LEFT(0,-1),
+		RIGHT(0,1);
+		
+		private int vert;
+		private int hor;
+		
+		private Direction(int vert, int hor){
+			this.vert = vert;
+			this.hor = hor;
+		}
+		
+		public int getVert(){
+			return this.vert;
+		}
+		
+		public int getHor(){
+			return this.hor;
+		}
+		
+		public boolean isDiag(){
+			return (this.vert != 0 && this.hor != 0);
+		}
+	}
+	
+	private Position [][] pieces;
+	private int numWhite;
+	private int numBlack;
+	
+	public Board(){
+		this.pieces =  new Piece[8][8];
+		
+		this.pieces[3][3] = new Piece(Piece.Color.WHITE);
+		this.pieces[3][4] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][3] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][4] = new Piece(Piece.Color.WHITE);
+		
+		this.numBlack = this.numWhite = 2;		
+	}
+	
+	public int getNumWhite(){
+		return this.numWhite;
+	}
+	
+	public int getNumBlack(){
+		return this.numBlack;
+	}
+	
+	private Piece get(Point p){
+		return this.pieces[p.x][p.y];
+	}
+	
+	private boolean endsIn(Piece.Color color, Point p, Direction dir){
+		
+		
+		return true;
+	}
+	
+	public boolean isMoveValid(Piece.Color color, Point p1){
+		if(this.get(p1) != null)
+			return false;
+		
+		for(Direction dir : Direction.values())
+			if(this.endsIn(color, p1, dir))
+				return true;
+		
+		return false;
+	}
+}

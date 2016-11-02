@@ -1,0 +1,57 @@
+package Chap7Ex4;
+
+import java.util.List;
+
+public class Board {
+	private Piece [][] mat;
+	
+	public Board(){
+		this.mat = newChessMat();
+	}
+	
+	private static Piece[][] newChessMat(){
+		Piece[][] pieces = new Piece[8][8];
+		
+		for(int i = 0; i < 8; i++){
+			pieces[1][i] = new Pawn(Piece.Color.WHITE);
+			pieces[6][i] = new Pawn(Piece.Color.BLACK);
+		}
+		
+		pieces[0][0] = new Tower(Piece.Color.WHITE);
+		pieces[0][7] = new Tower(Piece.Color.WHITE);
+		pieces[7][0] = new Tower(Piece.Color.BLACK);
+		pieces[7][7] = new Tower(Piece.Color.BLACK);
+		
+		pieces[0][1] = new Horse(Piece.Color.WHITE);
+		pieces[0][6] = new Horse(Piece.Color.WHITE);
+		pieces[7][2] = new Horse(Piece.Color.BLACK);
+		pieces[7][6] = new Horse(Piece.Color.BLACK);
+		
+		pieces[0][2] = new Bishop(Piece.Color.WHITE);
+		pieces[0][5] = new Bishop(Piece.Color.WHITE);
+		pieces[7][2] = new Bishop(Piece.Color.BLACK);
+		pieces[7][5] = new Bishop(Piece.Color.BLACK);
+		
+		pieces[0][3] = new Queen(Piece.Color.WHITE);
+		pieces[7][4] = new Queen(Piece.Color.BLACK);
+		
+		pieces[0][4] = new King(Piece.Color.WHITE);
+		pieces[7][3] = new King(Piece.Color.BLACK);
+		
+		return pieces;
+	}
+	
+	public boolean free(Point point){
+		return this.mat[point.getX()][point.getY()] == null;
+	}
+	
+	public boolean isPathFree(Point sour, Point dest){
+		
+		
+		return true;
+	}
+	
+	public boolean underThreat(Piece.Color color, Point p){
+		return false;
+	}
+}

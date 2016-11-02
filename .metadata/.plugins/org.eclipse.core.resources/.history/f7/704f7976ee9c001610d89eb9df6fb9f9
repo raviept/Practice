@@ -1,0 +1,16 @@
+package Chap5;
+
+public class Ex3 {
+	public static boolean getBit(int n, int index){
+		return (n & (0x1 << index)) != 0;
+	}
+	
+	public static int setBit(int n, int index, boolean newBit){
+		return n| (1 << index)
+	}
+	
+	public static void printNextSameOnes(int n){
+		
+	}
+	
+}

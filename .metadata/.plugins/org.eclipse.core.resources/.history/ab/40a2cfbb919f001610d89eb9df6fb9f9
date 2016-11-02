@@ -1,0 +1,7 @@
+package Chap7Ex4;
+
+public class Horse extends Piece{
+	public boolean isMoveValid(){
+		
+	}
+}

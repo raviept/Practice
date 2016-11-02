@@ -1,0 +1,9 @@
+package DataStructures;
+
+public class SimpleTree<T> implements Tree<T>{
+	private BSTreeNode<Integer,T> root = null;
+	
+	public SimpleTree<T> treeFromArray(T [] arr){
+		
+	}
+}

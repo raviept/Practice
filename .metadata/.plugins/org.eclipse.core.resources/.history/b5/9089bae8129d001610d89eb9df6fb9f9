@@ -1,0 +1,72 @@
+package Chap5;
+
+import java.util.Random;
+
+import Prints.Prints;
+
+public class Ex3 {
+	public static boolean getBit(int n, int index){
+		return (n & (0x1 << index)) != 0;
+	}
+	
+	public static int setBit(int n, int index, boolean newBit){
+		if(newBit)
+			return n | (0x1 << index);
+		else
+			return n & ((-1)^(0x1 << index));
+	}
+	
+	public static int getNextSameOnes(int n){
+		int i = 0;
+		while(!getBit(n,i))
+			i++;
+		int x = 0;
+		while(getBit(n,i)){
+			i++;
+			x++;
+		}
+		n = setBit(n,i,true);
+		int j = 0;
+		while(j < x-1){
+			n = setBit(n,j,true);
+			j++;
+		}
+		while(j<i){
+			n = setBit(n,j,false);
+			j++;
+		}
+		
+		return n;
+	}
+	
+	public static int getPrevSameOnes(int n){
+		int i = 0, x = 0;
+		while(getBit(n,i))
+			i++;
+		while(!getBit(n,i)){
+			i++;
+			x++;
+		}
+		n = setBit(n,i,false);
+		int j = 0;
+		while(j<x-1){
+			n = setBit(n,j,false);
+			j++;
+		}
+		while(j < i){
+			n = setBit(n,j,true);
+			j++;
+		}
+		
+		return n;
+	}
+	
+	public static void main(String []args){
+		Random rand = new Random();
+		
+		int n = rand.nextInt();
+		Prints.printLittleEndian(n);
+		Prints.printLittleEndian(getNextSameOnes(n));
+		Prints.printLittleEndian(getPrevSameOnes(n));		
+	}
+}

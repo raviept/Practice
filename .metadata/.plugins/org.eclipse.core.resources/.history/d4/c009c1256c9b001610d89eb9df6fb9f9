@@ -1,0 +1,37 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SimpleTree<T> implements Tree<T>{
+	private BSTreeNode<Integer,T> root = null;
+	
+	public static SimpleTree<T> treeFromArray(T [] arr){
+		
+	}
+	
+	@Override
+	public int depth(){
+		return (this.root == null)? 0 : this.root.maxDepth();
+	}
+	
+	@Override
+	public List<T> inOrder(){
+		List<T> arr = new ArrayList<>();
+		
+		if(this.root != null)
+			this.root.inOrder(arr);
+		
+		return arr;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		int dpt = this.depth();
+		if(dpt == 0)
+			return sb.toString();
+		
+		String [][] mat = new String[dpt][1<<dpt - 1];
+	}
+}

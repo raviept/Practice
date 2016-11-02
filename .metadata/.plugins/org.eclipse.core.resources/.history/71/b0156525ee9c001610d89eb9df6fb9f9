@@ -1,0 +1,10 @@
+package Chap5;
+
+public class Ex3 {
+	
+	
+	public static void printNextSameOnes(int n){
+		
+	}
+	
+}

@@ -1,0 +1,5 @@
+package Chap7Ex7;
+
+public class Server {
+	private List<User> users = new ArrayList<>();
+}

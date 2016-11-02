@@ -1,0 +1,19 @@
+package Chap7Ex2;
+
+import java.util.ArrayList;
+import java.util.List;
+import DataStructures.Stack;
+
+public class CallCenter {
+	private TL tl;
+	private PM pm;
+	private List<Fresher> freshers = new ArrayList<>();
+	private Stack<Fresher> freeFreshers = new Stack<>();
+	
+	public CallCenter(TL tl, PM pm){
+		this.tl = tl;
+		this.pm = pm;
+	}
+	
+	
+}

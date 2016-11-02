@@ -1,0 +1,194 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class AVLNode<K extends Comparable<K>,T> {
+	private AVLNode<K,T> left, right;
+	private int bal = 0;
+	private T data;
+	private K key;
+	
+	AVLNode(K key,T data){
+		this.data = data;
+		this.key = key;
+	}
+	
+	T getData(){
+		return this.data;
+	}
+	
+	K getKey(){
+		return this.key;
+	}
+	
+	private static int boolToInt(boolean f){
+		return (f)? 1 : 0;
+	}
+	
+	private static <K extends Comparable<K>,T> AVLNode<K,T> rotateRight(AVLNode<K,T> root){
+		AVLNode<K,T> l = root.left;
+	    root.left = l.right;
+	    l.right = root;
+	    
+	    int dr = 0;
+	    int dlr = dr - root.bal - 1 - boolToInt(l.bal < 0);
+	    int dll = dr - root.bal - 1 - boolToInt(l.bal > 0);
+	    		
+	    root.bal = dr - dlr;
+	    l.bal = (1 + Math.max(dr, dlr)) - dll;
+		
+		return l;
+	}
+	
+	private static <K extends Comparable<K>,T> AVLNode<K,T> rotateLeft(AVLNode<K,T> root){
+		AVLNode<K,T> r = root.right;
+	    root.right = r.left;
+	    r.left = root;
+	    
+	    int dl = 0;
+	    int drl = dl + root.bal - 1 - boolToInt(r.bal > 0);
+	    int drr = dl + root.bal - 1 - boolToInt(r.bal < 0);
+
+	    root.bal = drl - dl;
+	    r.bal = drr - (1 + Math.max(dl, drl));
+	    
+		return r;
+	}
+	
+	static <K extends Comparable<K>,T> AVLNode<K,T> put(AVLNode<K,T> root, K key, T data){
+		if(root == null)
+			return new AVLNode<K,T>(key,data);
+		
+		if(root.key.compareTo(key) == 0){
+			root.data = data;
+			return root;
+		}
+		
+		if(root.key.compareTo(key) > 0){
+			int b = (root.left != null)? root.left.bal : -2;
+			root.left = put(root.left,key,data);
+			if((b == -2) || ((b == 0) && (root.left.bal != 0)))
+				root.bal--;
+			if(root.bal < -1){
+				if(root.left.bal > 0){
+					root.left = rotateLeft(root.left);
+				}
+				root = rotateRight(root);			
+			}
+		}
+		else{
+			int b = (root.right != null)? root.right.bal : 2;
+			root.right = put(root.right,key,data);
+			if((b == 2) || ((b == 0) && (root.right.bal != 0)))
+				root.bal++;
+			if(root.bal > 1){
+				if(root.right.bal < 0){
+					root.right = rotateRight(root.right);
+				}
+				root = rotateLeft(root);
+			}
+		}
+		
+		return root;
+	}
+	
+	static <K extends Comparable<K>,T> AVLNode<K,T> remove(AVLNode<K,T> root, K key){
+		if(root == null)
+			return null;
+		
+		boolean goLeft = false;
+		
+		if(root.key.compareTo(key) == 0){
+			if(root.left == null && root.right == null)
+				return null;
+			if(root.bal <= 0){
+				goLeft = true;
+				AVLNode<K,T> max = maxNode(root.left);
+				root.key = max.key;
+				root.data = max.data;
+			}
+			else{
+				goLeft = false;
+				AVLNode<K,T> min = minNode(root.right);
+				root.key = min.key;
+				root.data = min.data;		
+			}
+			key = root.key;
+		}
+		else{
+			goLeft = (root.key.compareTo(key) > 0);
+		}
+		
+		if(goLeft && root.left != null){
+			int b = root.left.bal;
+			root.left = remove(root.left, key);
+			if((root.left == null) || (b != 0 && root.left.bal == 0))
+				root.bal++;
+			if(root.bal > 1){
+				if(root.right.bal < 0)
+					rotateRight(root.right);
+				root = rotateLeft(root);
+			}
+		}
+		else if(!goLeft && root.right != null){
+			int b = root.right.bal;
+			root.right = remove(root.right, key);
+			if((root.right == null) || (b!=0 && root.right.bal == 0)){
+				root.bal--;
+			}
+			if(root.bal < -1){
+				if(root.left.bal > 0)
+					rotateLeft(root.left);
+				root = rotateRight(root);
+			}
+		}
+		
+		return root;
+	}
+	
+	public int depth(){
+		int dl = (this.left == null)? 0 : this.left.depth();
+		int dr = (this.right == null)? 0 : this.right.depth();
+		
+		return 1 + ((dr > dl)? dr : dl);
+	}
+	
+	public int getBal(){
+		return this.bal;
+	}
+	
+	AVLNode<K,T> search(K key) {
+		if(this.key.compareTo(key) == 0)
+			return this;
+		if((this.key.compareTo(key) > 0) && (this.left != null))
+			return this.left.search(key);
+		if((this.key.compareTo(key) < 0) && (this.right != null))
+			return this.right.search(key);
+		
+		return null;
+	}
+	
+	void inOrder(List<AVLNode<K,T>> list) {
+		if(this.left != null)
+			this.left.inOrder(list);
+		list.add(this);
+		if(this.right != null)
+			this.right.inOrder(list);
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("<%s,%d>", this.key.toString(), this.bal);
+	}
+	
+	void preOrderFill(ArrayList<AVLNode<K,T>> arr, int l, int n){
+		arr.set(l + (n/2),this);
+		if(this.left != null){
+			this.left.preOrderFill(arr, l, (n/2));
+		}
+		if(this.right != null){
+			this.right.preOrderFill(arr, l + (n/2) + 1, n - (n/2) - 1);
+		}
+	}
+}

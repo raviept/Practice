@@ -1,0 +1,10 @@
+package Chap7Ex2;
+
+public class CallCenter {
+	private TL tl;
+	private PM pm;
+	private List<Fresher> freshers = new ArrayList<Fresher>();
+	private Stack<Fresher> freeFreshers = new Stack<Fresher>();
+	
+	public Call
+}

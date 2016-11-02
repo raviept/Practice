@@ -1,0 +1,10 @@
+package Chap5;
+
+public class Ex6 {
+
+	public static int swapOdEv(int n){
+		return ((n << 1) & 0x22222222) | ((n>>1) & 0x11111111);
+	}
+	
+	
+}

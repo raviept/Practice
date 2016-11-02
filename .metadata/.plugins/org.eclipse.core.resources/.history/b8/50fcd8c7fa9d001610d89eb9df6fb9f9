@@ -1,0 +1,11 @@
+package Chap7;
+
+import java.util.Map;
+
+public class Jogador {
+	private Map<Tipo,Carta> mao;
+	
+	public Carta play(Tipo tipo){
+		
+	}
+}

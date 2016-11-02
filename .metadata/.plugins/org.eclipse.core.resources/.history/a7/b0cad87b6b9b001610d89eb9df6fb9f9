@@ -1,0 +1,7 @@
+package DataStructures;
+
+public class SimpleTree<T> {
+	private BSTreeNode<Integer,T> root = null;
+	
+	public SimpleTree<>
+}

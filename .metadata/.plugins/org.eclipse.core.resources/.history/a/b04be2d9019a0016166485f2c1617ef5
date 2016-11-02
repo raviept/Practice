@@ -1,0 +1,15 @@
+package Mix;
+
+public class StringUtils {
+	public static String center(String s, int size){
+		int l = s.length();
+		if(size <= l){
+			return s;
+		}
+		
+		StringBuilder sb = new StringBuilder(size);
+		
+		
+		return sb.toString();
+	}
+}

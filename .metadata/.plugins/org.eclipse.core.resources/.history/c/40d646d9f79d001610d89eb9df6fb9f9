@@ -1,0 +1,18 @@
+package Chap7;
+
+import java.util.List;
+
+public class Baralho {
+	private List<Carta> cartas;
+	
+	private Baralho(){
+		
+	}
+	
+	public static Baralho newBaralhoDeSueca(){
+		Baralho bar = new Baralho();
+		for(Tipo tipo : Carta.Tipo){
+			
+		}
+	}
+}

@@ -1,0 +1,46 @@
+package Chap7;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import Chap7.Carta.Naipe;
+
+public class Jogador {
+	private Set<Carta> mao = new HashSet<>();
+	private String name;
+	
+	public Jogador(String name){
+		this.name = name;
+	}
+	
+	public void addToMao(Carta carta){
+		mao.add(carta);
+	}
+	
+	public void play(Carta carta){
+		mao.remove(carta);
+	}
+	
+	public Set<Carta> getMao(){
+		Set<Carta> copy = new HashSet<>();
+		copy.addAll(mao);
+		
+		return copy;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public boolean contains(Carta carta){
+		return this.mao.contains(carta);
+	}
+
+	public boolean containsNaipe(Naipe naipe) {
+		for(Carta carta : this.mao)
+			if(carta.naipe == naipe)
+				return true;
+		
+		return false;
+	}
+}

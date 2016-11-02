@@ -1,0 +1,32 @@
+package DataStructures;
+
+import java.util.ArrayList;
+
+public class AVL<K extends Comparable<K>,T> {
+	private AVLNode<K,T> root;
+	private int size = 0;
+	
+	public void put(K key,T data){
+		this.root = AVLNode.put(root, key, data);
+	}
+	
+	public void remove(K key){
+		root = AVLNode.remove(root, key);
+	}
+	
+	@Override
+	public String toString(){
+		if(this.isEmpt)
+		int dpt = this.depth();
+		System.out.println("Depth "+ dpt);
+		int size = (1<<dpt) - 1;
+		System.out.println("Size " + size);
+		ArrayList<AVLNode<K,T>> arr = new ArrayList<>(size);
+		for(int i = 0; i < size; i++){
+			arr.add(null);
+		}
+		
+		preOrderFill(arr, 0, size);
+		return stringRep(arr,dpt);
+	}
+}

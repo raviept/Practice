@@ -1,0 +1,61 @@
+package Othello;
+
+public class Position {
+	public static enum State{
+		EMPTY,
+		BORDER,
+		FULL;
+	}
+	
+	private Point point;
+	private State state;
+	private Color color;
+	private boolean validBlack;
+	private boolean validWhite;
+	
+	public Position(Point point){
+		this.state = State.EMPTY;
+		this.point = point;
+	}
+	
+	public void placePiece(Color color){
+		this.color = color;
+		this.state = State.FULL;
+	}
+	
+	public void flip(){
+		this.color = this.color.flip();
+	}
+	
+	public State getState(){
+		return this.state;
+	}
+	
+	public Color getColor(){
+		return this.color;
+	}
+	
+	public void setBorder(boolean validWhite, boolean validBlack){
+		this.state = State.BORDER;
+		this.validBlack = validBlack;
+		this.validWhite = validWhite;
+	}
+	
+	public boolean isValidBlack(){
+		return this.validBlack;
+	}
+	
+	public boolean isValidWhite(){
+		return this.validWhite;
+	}
+	
+	public void setColor(Color color){
+		this.state = State.FULL;
+		this.color = color;
+	}
+	
+	@Override
+	public int hashCode(){
+		return this.point.hashCode();
+	}
+}

@@ -1,0 +1,6 @@
+package Chap7Ex2;
+
+public class CallCenter {
+	private TL tl;
+		
+}

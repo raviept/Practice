@@ -1,0 +1,7 @@
+package Chap7Ex4;
+
+public class Pawn extends Piece{
+	public boolean isMoveValid(Point sour, Point dest){
+		
+	}
+}

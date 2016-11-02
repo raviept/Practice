@@ -1,0 +1,91 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Mix.StringUtils;
+
+public class SimpleTree<T> implements Tree<T>{
+	private BSTreeNode<Integer,T> root = null;
+	
+	public static SimpleTree<T> treeFromArray(T [] arr){
+		
+	}
+	
+	@Override
+	public int depth(){
+		return (this.root == null)? 0 : this.root.maxDepth();
+	}
+	
+	@Override
+	public List<T> inOrder(){
+		List<T> arr = new ArrayList<>();
+		
+		if(this.root != null)
+			this.root.inOrder(arr);
+		
+		return arr;
+	}
+	
+	private String stringRep(ArrayList<BSTreeNode<Integer,T>> arr, int dpt){
+		StringBuilder sb = new StringBuilder();
+		
+		int max = 0;
+		int size = (1<<dpt) - 1;
+		for(int i = 0; i < )
+	
+		int sp = size/2;
+		for(int i = 0; i < dpt; i++){
+			int k = sp, vp = 0;
+			StringBuilder sb2 = new StringBuilder();
+			for(int j = 0; j < size; j++){
+				BSTreeNode<Integer,T> node = arr.get(j);
+				int father = sp*2 + 2*(2*sp+1)*(vp/2);				
+				if(node != null){
+					sb.append(StringUtils.center("|", 9));
+					sb2.append(StringUtils.center(node.toString(), 9));
+				}
+				else if(j == k){
+					
+				}
+				
+				sb.append(StringUtils.center("", 9));
+				sb2.append(StringUtils.center("", 9));
+				if(j==k){
+					
+					else if(i>0){
+						
+						
+						sb.append(StringUtils.center("",9));
+						sb2.append(StringUtils.center("", size))
+					}
+					k+= 2*(sp+1);
+					vp++;
+				}
+				else{
+					sb.append(StringUtils.center("", 9));
+					sb2.append(StringUtils.center("", 9));
+				}
+			}
+			sp = sp/2;
+		}
+		
+		return sb.toString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public String toString(){
+		int dpt = this.depth();
+		if(dpt == 0)
+			return "";
+		int size = 1<<dpt -1;
+		
+		List<BSTreeNode<Integer,T>> arr = new ArrayList<>();
+		for(int i = 0; i < size; i++)
+			arr.add(null);
+		this.root.as2DMat(arr, 0, 0, dpt);
+		
+		return stringRep(arr, dpt);
+	}
+}

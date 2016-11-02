@@ -1,0 +1,12 @@
+package Chap5;
+
+public class Ex5 {
+	public static int numBitsChange(int x, int y){
+		x = x^y;
+		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

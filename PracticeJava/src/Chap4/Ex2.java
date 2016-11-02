@@ -1,0 +1,14 @@
+package Chap4;
+
+import DataStructures.Graph;
+import Gen.RandGen;
+
+public class Ex2 {
+
+	public static void main(String [] args){
+		Graph<Integer> graph = RandGen.genGraph(20, 10);
+		System.out.println(graph);
+		
+		System.out.println(graph.BFS(1).contains(4));
+	}
+}

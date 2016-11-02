@@ -1,0 +1,11 @@
+package Chap7Ex4;
+
+public class Bishop extends Piece{
+	public Bishop(Color color){
+		super(color);
+	}
+	
+	public boolean isMoveValid(Board board, Point sour, Point dest){
+		
+	}
+}

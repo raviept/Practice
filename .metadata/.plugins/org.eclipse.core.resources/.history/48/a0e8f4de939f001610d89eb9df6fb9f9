@@ -1,0 +1,6 @@
+package Chap7Ex4;
+
+public interface Piece {
+
+	public boolean isMoveValid(Point source, Point dest, boolean kill);
+}

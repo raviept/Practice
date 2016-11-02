@@ -74,4 +74,47 @@ public class BSTreeNode<K extends Comparable<K>,T> {
 			this.right.inOrder(list);
 	}
 	
+	public int maxDepth(){
+		int dl = (this.left != null)? this.left.maxDepth() : 0;
+		int dr = (this.right != null)? this.right.maxDepth() : 0;
+		return 1 + Math.max(dl, dr);
+	}
+	
+	public int minDepth(){
+		int dl = (this.left != null)? this.left.minDepth() : 0;
+		int dr = (this.right != null)? this.right.minDepth() : 0;
+		return 1+ Math.min(dl, dr);
+	}
+	
+	public boolean isBalanced(){
+		return ((this.maxDepth() - this.minDepth()) <= 1);
+	}
+
+	public void as2DMat(List<BSTreeNode<K, T>> arr, int pos, int size) {
+		if(size <= 0)
+			return;
+		int mid = pos + size/2;		
+		arr.set(mid, this);
+		
+		if(this.left != null)
+			this.left.as2DMat(arr, pos, size/2);
+		if(this.right != null)
+			this.right.as2DMat(arr, pos + size/2 + 1, size - size/2 - 1);
+	}
+
+	public static <K extends Comparable<K>,T> BSTreeNode<K, T> fromArray(T[] arr, int pos, int size) {
+		if(size <= 0)
+			return null;
+		
+		int mid = pos + size/2;
+		BSTreeNode<K,T> node = new BSTreeNode<K,T>(null,arr[mid]);
+		node.left = fromArray(arr,pos, size/2);
+		node.right = fromArray(arr, pos + size/2 +1, size - size/2 -1);
+		return node;
+	}
+	
+	@Override
+	public String toString(){
+		return this.data.toString();
+	}
 }

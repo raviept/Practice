@@ -1,0 +1,20 @@
+package Chap7Ex4;
+
+public class Board {
+	private Piece [][] pieces = new Piece[8][8];
+	
+	public Board(){
+		
+	}
+	
+	private Piece[][] newBoardMat(){
+		for(int i = 0; i < 8; i++){
+			pieces[1][i] = new Pawn();
+			pieces[6][i] = new Pawn();
+		}
+		pieces[0][0] = new Tower();
+		pieces[0][7] = new Tower();
+		pieces[0][0] = new Tower();
+		pieces[0][7] = new Tower();
+	}
+}

@@ -1,0 +1,7 @@
+package DataStructures;
+
+public interface MyMap<K extends Comparable<K>,T>{
+	public int size();
+	
+	public boolean isEmpty();
+}

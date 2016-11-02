@@ -1,0 +1,58 @@
+package Othello;
+
+public class Board {
+	private static enum Directions{
+		UP(false),
+		LEFT_UP(true),
+		RIGHT_UP(true),
+		RIGHT_DOWN(true),
+		DOWN(false),
+		LEFT_DOWN(true),
+		LEFT(false),
+		RIGHT(false);
+		
+		private boolean diag;
+		
+		public Directions(boolean diag){
+			this.diag = diag;
+		}
+		
+		
+	}
+	
+	private Piece [][] pieces;
+	private int numWhite;
+	private int numBlack;
+	
+	public Board(){
+		this.pieces =  new Piece[8][8];
+		
+		this.pieces[3][3] = new Piece(Piece.Color.WHITE);
+		this.pieces[3][4] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][3] = new Piece(Piece.Color.BLACK);
+		this.pieces[4][4] = new Piece(Piece.Color.WHITE);
+		
+		this.numBlack = this.numWhite = 2;		
+	}
+	
+	public int getNumWhite(){
+		return this.numWhite;
+	}
+	
+	public int getNumBlack(){
+		return this.numBlack;
+	}
+	
+	private Piece get(Point p){
+		return this.pieces[p.x][p.y];
+	}
+	
+	public boolean isMoveValid(Piece.Color color, Point p1){
+		if(this.get(p1) != null)
+			return false;
+		
+		
+		
+		return true;
+	}
+}

@@ -1,0 +1,12 @@
+package Chap5;
+
+public class Ex1 {
+	public int copy(int n, int m, int i, int j){
+		if(j<i) return n;
+				
+	}
+	
+	public static void main(String [] args){
+		
+	}
+}

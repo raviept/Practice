@@ -1,0 +1,200 @@
+package DataStructures;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+
+import Mix.StringUtils;
+
+public final class AVL<K extends Comparable<K>,T> implements MyMap<K,T>{
+	private AVLNode<K,T> root;
+	private int size = 0;
+	
+	public void put(K key,T data){
+		if(!this.containsKey(key))
+			this.size++;
+		this.root = AVLNode.put(root, key, data);
+	}
+	
+	public void remove(K key){
+		if(this.containsKey(key))
+			this.size--;		
+		root = AVLNode.remove(root, key);
+	}
+	
+	public int depth(){
+		if(root == null)
+			return 0;
+		else
+			return this.root.depth();			
+	}
+	
+	@Override
+	public int size() {
+		return this.size;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return (this.size == 0);
+	}
+
+	@Override
+	public boolean containsKey(K key) {
+		if(this.root == null)
+			return false;
+		return (this.root.search(key) != null);
+	}
+	
+	@Override
+	public T get(K key){
+		if(this.root == null)
+			throw new EmptyTreeException("No such key exists!");
+		AVLNode<K,T> node = this.root.search(key);
+		if(node == null)
+			throw new EmptyTreeException("No such key exists!");
+		
+		return node.getData();
+	}
+	
+	@Override
+	public Set<K> keySet() {
+		Set<K> set = new HashSet<>();
+		if(this.isEmpty())
+			return set;
+		List<AVLNode<K,T>> auxList = new ArrayList<>();
+		this.root.inOrder(auxList);
+		for(AVLNode<K,T> node : auxList)
+			set.add(node.getKey());
+		return set;
+	}
+
+	@Override
+	public List<T> values() {
+		List<T> list = new ArrayList<>();
+		if(this.isEmpty())
+			return list;
+		List<AVLNode<K,T>> auxList = new ArrayList<>();
+		this.root.inOrder(auxList);
+		for(AVLNode<K,T> node : auxList)
+			list.add(node.getData());
+		
+		return list;
+	}
+	
+	/**
+	 * 
+	 * @param arr List of nodes in the vertical order.
+	 * @param dpt Tree depth
+	 * @return Centred visual representation of the tree
+	 * 
+	 * The algorithm iterates over each level of the tree. For each level,
+	 * it iterates over every vertical position. If the element
+	 * corresponding to that vertical position belongs to the current level,
+	 * then it prints that element, otherwise, it adds padding.
+	 */
+	private String stringRep(List<AVLNode<K,T>> arr, int dpt){
+		StringBuilder sb = new StringBuilder();
+		
+		int sp = arr.size()/2;
+		for(int i = 0; i < dpt; i++){//Iterates over each level
+			int hpos = sp;//Index in the array of the next element from the current level
+			int hind = 0;//Relative index of the next element from the current level
+			
+			StringBuilder sb2 = new StringBuilder();
+			for(int j = 0; j < arr.size(); j++){
+				if(j == hpos){
+					AVLNode<K,T> node = arr.get(j);
+					String hat = "";
+					String val = "";
+					if(node != null){
+						hat = "|";
+						val = node.toString();
+					}
+					else if(i > 0){
+						int hFpos = arr.size()/(1<<i);
+						int hFind = hind/2;
+						int father = hFpos + 2*(hFpos + 1)*hFind;
+						if(arr.get(father) != null){
+							val = ".";
+							hat = "|";
+						}
+					}
+					
+					sb.append(StringUtils.center(hat, 9));
+					sb2.append(StringUtils.center(val, 9));
+					hpos += 2*(sp + 1);
+					hind++;
+				}
+				else{
+					sb.append(StringUtils.center("", 9));
+					sb2.append(StringUtils.center("", 9));
+				}
+			}
+			sb.append(System.lineSeparator() + sb2.toString() + System.lineSeparator());
+			sp = sp/2;
+		}
+		
+		return sb.toString();
+	}
+		
+	@Override
+	public String toString(){
+		String visual = "";
+		if(!this.isEmpty()){
+			int dpt = this.depth();
+			int size = (1<<dpt) - 1;
+			ArrayList<AVLNode<K,T>> arr = new ArrayList<>(size);
+			for(int i = 0; i < size; i++){
+				arr.add(null);
+			}
+			this.root.preOrderFill(arr, 0, size);
+			visual = stringRep(arr,dpt);
+		}
+		
+		return String.format("Size: %d%nDepth: %d%n%s",
+				this.size(),this.depth(),visual);
+	}
+	
+	private static AVL<Integer,Integer> treeFromArray(int []arr, int pos, int size){
+		if(size <= 0)
+			return null;
+		int mid = pos + size/2;
+		AVL<Integer,Integer> node = new AVL();
+		
+		
+	}
+	
+	public static AVL<Integer> treeFromArray(int []arr){
+		return treeFromArray(arr, 0, arr.length);
+	}
+	
+	public static void main(String []args){
+		AVL<Integer,String> avl = new AVL<>();
+		Scanner scan = new Scanner(System.in);
+		String data;
+		do{
+			int key = Integer.parseInt(scan.nextLine());
+			data = scan.nextLine();
+			avl.put(key,data);
+			System.out.println();
+			System.out.println("---------------------------------------------------------------------");
+			System.out.println(avl);			
+			System.out.println();
+		}while(!data.equals("q"));
+		System.out.println("Start removing!");
+		do{
+			data = "";
+			int key = Integer.parseInt(scan.nextLine());
+			avl.remove(key);
+			System.out.println();
+			System.out.println("---------------------------------------------------------------------");
+			System.out.println(avl);			
+			System.out.println();
+		}while(!data.equals("q"));
+			
+		scan.close();
+	}	
+}

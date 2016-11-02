@@ -1,0 +1,16 @@
+package Chap7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Sueca extends Jogo{
+	public Sueca(List<Jogador> jogadores){
+		super.baralho = Baralho.newBaralhoDeSueca();
+		super.jogadores = new ArrayList<>();
+		this.jogadores.addAll(jogadores);
+	}
+	
+	public void distributeCards(){
+		
+	}
+}

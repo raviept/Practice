@@ -1,0 +1,14 @@
+package Chap7Ex7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import DataStructures.Queue;
+
+public class Conversation {
+	private List<User> participants;
+	private List<Message> sent = new ArrayList<>();
+	private Queue<Message> toBeSent = new Queue<>();
+	
+	
+}

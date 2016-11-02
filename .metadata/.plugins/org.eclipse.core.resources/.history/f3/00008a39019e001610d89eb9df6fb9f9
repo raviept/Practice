@@ -1,0 +1,94 @@
+package Chap7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Sueca extends Jogo{
+	private static int MAX_ITER = 40;
+	
+	private int turn = 0;
+	private int playsThisRound = 0;
+	private int numRounds = 0;
+	
+	private Carta.Naipe trunfo;
+	private List<Carta> mesa = new ArrayList<>();
+	private List<Carta> team1 = new ArrayList<>();
+	private List<Carta> team2 = new ArrayList<>();
+	
+	
+	public Sueca(List<Jogador> jogadores){
+		super.baralho = Baralho.newBaralhoDeSueca();
+		if(jogadores.size() != 4)
+			throw new IllegalArgumentException("Um jogo de sueca requer 4 jogadores!");
+		super.jogadores = new ArrayList<>();
+		this.jogadores.addAll(jogadores);
+	}
+	
+	public void distributeCards(boolean up){
+		this.baralho.shuffle(MAX_ITER);
+		
+		int j = (up)? 1 : 0;
+		int numCards = baralho.size();
+		for(int i = 0; i < numCards; i++){
+			if(up){
+				Carta carta = baralho.nextUp();
+				jogadores.get(j).addToMao(carta);
+				if(i == 0){
+					this.trunfo = carta.naipe;
+				}
+				
+				j = (j + 1)%4;
+			}
+			else{
+				jogadores.get(j).addToMao(baralho.nextDown());
+				j = (j + 3)%4;
+			}
+		}
+	}
+	
+	public boolean canPlay(Jogador jogador, Carta carta){
+		if(playsThisRound == 0)
+			return true;
+		
+		Carta first = this.mesa.get(0);
+		if((carta.naipe == this.trunfo) || (carta.naipe == first.naipe))
+			return true;
+		
+		return (!jogador.containsNaipe(carta.naipe) && !jogador.containsNaipe(trunfo));
+	}
+	
+	public void prepareNextRound(){
+		Carta first = this.mesa.get(0);
+		Carta 
+		int max = 0;
+		for(int i = 1; i < 4; i++){
+			if(compareCartas(first,)){
+				
+			}
+		}
+	}
+	
+	public void play(Carta carta){
+		if(!this.jogadores.get(turn).contains(carta))
+			throw new IllegalArgumentException("Jogador não possui esta carta!");
+		if(!canPlay(this.jogadores.get(turn), carta))
+			throw new IllegalArgumentException("Carta não é do naipe da mesa nem trunfo "
+					+ "e jogador possui carta válida!");
+		
+		this.jogadores.get(turn).play(carta);
+		this.mesa.add(carta);		
+		turn = (turn + 1)%4;
+		playsThisRound++;
+		if(playsThisRound == 4){
+			playsThisRound = 0;
+			prepareNextRound();
+			numRounds++;
+			if(numRounds == 10){
+				
+			}
+			else{
+				
+			}
+		}
+	}
+}

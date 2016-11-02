@@ -2,24 +2,23 @@ package DataStructures;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class AVLNode<K extends Comparable<K>,T> {
+class AVLNode<K extends Comparable<K>,T> {
 	private AVLNode<K,T> left, right;
 	private int bal = 0;
 	private T data;
 	private K key;
 	
-	public AVLNode(K key,T data){
+	AVLNode(K key,T data){
 		this.data = data;
 		this.key = key;
 	}
 	
-	public T getData(){
+	T getData(){
 		return this.data;
 	}
 	
-	public K getKey(){
+	K getKey(){
 		return this.key;
 	}
 	
@@ -57,13 +56,18 @@ public class AVLNode<K extends Comparable<K>,T> {
 		return r;
 	}
 	
-	public static <K extends Comparable<K>,T> AVLNode<K,T> add(AVLNode<K,T> root, K key, T data){
+	static <K extends Comparable<K>,T> AVLNode<K,T> put(AVLNode<K,T> root, K key, T data){
 		if(root == null)
 			return new AVLNode<K,T>(key,data);
 		
-		if(root.key.compareTo(key) >= 0){
+		if(root.key.compareTo(key) == 0){
+			root.data = data;
+			return root;
+		}
+		
+		if(root.key.compareTo(key) > 0){
 			int b = (root.left != null)? root.left.bal : -2;
-			root.left = add(root.left,key,data);
+			root.left = put(root.left,key,data);
 			if((b == -2) || ((b == 0) && (root.left.bal != 0)))
 				root.bal--;
 			if(root.bal < -1){
@@ -75,7 +79,7 @@ public class AVLNode<K extends Comparable<K>,T> {
 		}
 		else{
 			int b = (root.right != null)? root.right.bal : 2;
-			root.right = add(root.right,key,data);
+			root.right = put(root.right,key,data);
 			if((b == 2) || ((b == 0) && (root.right.bal != 0)))
 				root.bal++;
 			if(root.bal > 1){
@@ -89,6 +93,74 @@ public class AVLNode<K extends Comparable<K>,T> {
 		return root;
 	}
 	
+	static <K extends Comparable<K>,T> AVLNode<K,T> minNode(AVLNode<K,T> root){
+		while(root.left != null){
+			root = root.left;
+		}
+		return root;
+	}
+	
+	static <K extends Comparable<K>,T> AVLNode<K,T> maxNode(AVLNode<K,T> root){
+		while(root.right != null){
+			root = root.right;
+		}
+		return root;
+	}
+	
+	static <K extends Comparable<K>,T> AVLNode<K,T> remove(AVLNode<K,T> root, K key){
+		if(root == null)
+			return null;
+		
+		boolean goLeft = false;
+		
+		if(root.key.compareTo(key) == 0){
+			if(root.left == null && root.right == null)
+				return null;
+			if(root.bal <= 0){
+				goLeft = true;
+				AVLNode<K,T> max = maxNode(root.left);
+				root.key = max.key;
+				root.data = max.data;
+			}
+			else{
+				goLeft = false;
+				AVLNode<K,T> min = minNode(root.right);
+				root.key = min.key;
+				root.data = min.data;		
+			}
+			key = root.key;
+		}
+		else{
+			goLeft = (root.key.compareTo(key) > 0);
+		}
+		
+		if(goLeft && root.left != null){
+			int b = root.left.bal;
+			root.left = remove(root.left, key);
+			if((root.left == null) || (b != 0 && root.left.bal == 0))
+				root.bal++;
+			if(root.bal > 1){
+				if(root.right.bal < 0)
+					rotateRight(root.right);
+				root = rotateLeft(root);
+			}
+		}
+		else if(!goLeft && root.right != null){
+			int b = root.right.bal;
+			root.right = remove(root.right, key);
+			if((root.right == null) || (b!=0 && root.right.bal == 0)){
+				root.bal--;
+			}
+			if(root.bal < -1){
+				if(root.left.bal > 0)
+					rotateLeft(root.left);
+				root = rotateRight(root);
+			}
+		}
+		
+		return root;
+	}
+	
 	public int depth(){
 		int dl = (this.left == null)? 0 : this.left.depth();
 		int dr = (this.right == null)? 0 : this.right.depth();
@@ -96,7 +168,35 @@ public class AVLNode<K extends Comparable<K>,T> {
 		return 1 + ((dr > dl)? dr : dl);
 	}
 	
-	private void preOrderFill(ArrayList<AVLNode<K,T>> arr, int l, int n){
+	public int getBal(){
+		return this.bal;
+	}
+	
+	AVLNode<K,T> search(K key) {
+		if(this.key.compareTo(key) == 0)
+			return this;
+		if((this.key.compareTo(key) > 0) && (this.left != null))
+			return this.left.search(key);
+		if((this.key.compareTo(key) < 0) && (this.right != null))
+			return this.right.search(key);
+		
+		return null;
+	}
+	
+	void inOrder(List<AVLNode<K,T>> list) {
+		if(this.left != null)
+			this.left.inOrder(list);
+		list.add(this);
+		if(this.right != null)
+			this.right.inOrder(list);
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("<%s,%d>", this.key.toString(), this.bal);
+	}
+	
+	void preOrderFill(ArrayList<AVLNode<K,T>> arr, int l, int n){
 		arr.set(l + (n/2),this);
 		if(this.left != null){
 			this.left.preOrderFill(arr, l, (n/2));
@@ -105,74 +205,14 @@ public class AVLNode<K extends Comparable<K>,T> {
 			this.right.preOrderFill(arr, l + (n/2) + 1, n - (n/2) - 1);
 		}
 	}
-	
-	public int getBal(){
-		return this.bal;
-	}
-	
-	private static <K extends Comparable<K>,T> String avlNodeToString(AVLNode<K,T> node){
-		return String.format(" <%2s,%2d> ", node.getKey().toString(), node.getBal());
-	}
-	
-	private String stringRep(ArrayList<AVLNode<K,T>> arr, int dpt){
-		StringBuilder sb = new StringBuilder();
-		int sp = arr.size()/2;
-		for(int i = 0; i < dpt; i++){
-			int k = sp;
-			for(int j = 0; j < arr.size(); j++){
-				if(j == k){
-					sb.append("    |    ");					
-					k += 2*sp + 2;
-				}
-				else{
-					sb.append("         ");
-				}
-			}
-			sb.append(System.lineSeparator());
-			k = sp;
-			for(int j = 0; j < arr.size(); j++){
-				if(j == k){
-					AVLNode<K,T> node = arr.get(j);
-					String val = (node != null)? avlNodeToString(node) : "    .    ";			
-					sb.append(val);
-					k += 2*sp + 2;
-				}
-				else{
-					sb.append("         ");
-				}
-			}
-			sb.append(System.lineSeparator());
-			sp = sp/2;
-		}
-		
-		return sb.toString();
-	}
-	
-	@Override
-	public String toString(){
-		int dpt = this.depth();
-		System.out.println("Depth "+ dpt);
-		int size = (1<<dpt) - 1;
-		System.out.println("Size " + size);
-		ArrayList<AVLNode<K,T>> arr = new ArrayList<>(size);
-		for(int i = 0; i < size; i++){
-			arr.add(null);
-		}
-		
-		preOrderFill(arr, 0, size);
-		return stringRep(arr,dpt);
-	}
-	
-	public static void main(String []args){
-		AVLNode<Integer,String> root = null;
-		Scanner scan = new Scanner(System.in);
-		String data;
-		do{
-			int key = Integer.parseInt(scan.nextLine());
-			data = scan.nextLine();
-			root = add(root,key,data);
-			System.out.println(root);
-		}while(!data.equals("q"));
-		scan.close();
+
+	public static AVLNode<Integer, Integer> treeFromArray(int[] arr, int pos, int size) {
+		if(size == 0)
+			return null;
+		int mid = pos + size/2;
+		AVLNode<Integer,Integer> node = new AVLNode<>(arr[mid],arr[mid]);
+		node.left = treeFromArray(arr, pos, size/2);
+		node.right = treeFromArray(arr, pos + size/2 + 1, size - size/2 -1);
+		return node;
 	}
 }

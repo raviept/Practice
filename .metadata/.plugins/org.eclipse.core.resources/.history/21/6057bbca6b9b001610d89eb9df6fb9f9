@@ -1,0 +1,14 @@
+package DataStructures;
+
+public class SimpleTree<T> implements Tree<T>{
+	private BSTreeNode<Integer,T> root = null;
+	
+	public static SimpleTree<T> treeFromArray(T [] arr){
+		
+	}
+	
+	@Override
+	public int depth(){
+		return (this.root == null)? 0 : this.root.maxDepth();
+	}
+}

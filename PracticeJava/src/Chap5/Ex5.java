@@ -1,0 +1,25 @@
+package Chap5;
+
+import java.util.Random;
+
+import Prints.Prints;
+
+public class Ex5 {
+	public static int numBitsChange(int x, int y){
+		x = x^y;
+		int c = 0;
+		for(int i = 0; i < 32; i++)
+			c += ((x&(0x1 << i))!=0)? 1 : 0;
+		
+		return c;
+	}
+	
+	public static void main(String []args){
+		Random rand = new Random();
+		int x = rand.nextInt(64);
+		int y = rand.nextInt(64);
+		Prints.printLittleEndian(x);
+		Prints.printLittleEndian(y);
+		System.out.println(numBitsChange(x,y));
+	}
+}

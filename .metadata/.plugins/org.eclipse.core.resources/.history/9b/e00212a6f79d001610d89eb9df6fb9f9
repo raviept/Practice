@@ -1,0 +1,11 @@
+package Chap7;
+
+import java.util.List;
+
+public class Baralho {
+	private List<Carta> cartas;
+	
+	public Baralho(){
+		
+	}
+}

@@ -1,0 +1,18 @@
+package Chap4;
+
+import DataStructures.SimpleTree;
+import Gen.RandGen;
+import Prints.Prints;
+
+public class Ex3 {
+	public static void main(String []args){
+		int [] arr = RandGen.genOrderedArray(1<<3-1,50);
+		Prints.printArr(arr);
+		Integer []arr2 = new Integer[arr.length];
+		for(int i = 0; i < arr.length; i++)
+			arr2[i] = arr[i];
+		
+		SimpleTree<Integer> tree = SimpleTree.treeFromArray(arr2);
+		System.out.println(tree);
+	}
+}

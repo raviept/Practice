@@ -1,0 +1,38 @@
+package Chap7Ex4;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Queen extends Piece{
+	public Queen(Color color){
+		super(color);
+	}
+	
+	public boolean isMoveValid(Board board, Point sour, Point dest){
+		int dx = dest.getX() - sour.getX();
+		int dy = dest.getY() - sour.getY();
+		
+		if(dx == 0 && dy == 0)
+			return false;
+		
+		if(Math.abs(dx) != Math.abs(dy) && dx != 0 && dy != 0)
+			return false;
+		
+		List<Point> path = new ArrayList<>();
+		
+		
+		if(dx == 0){
+			int diry = (int)Math.signum(dy);
+			for(int j = sour.getY() + diry ; j != dest.getY(); j+= diry)
+				
+		}
+		else if(dy == 0){
+			
+		}
+		else{
+			
+		}
+		
+		return board.free(path);
+	}
+}

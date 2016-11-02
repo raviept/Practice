@@ -1,0 +1,9 @@
+package Chap4;
+
+import Gen.RandGen;
+
+public class Ex3 {
+	public static void main(String []args){
+		int [] arr = RandGen.genOrderedArray(10,50);
+	}
+}

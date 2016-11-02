@@ -1,0 +1,60 @@
+package Chap7;
+
+public class Carta implements Comparable<Carta>{
+	public static enum Naipe{
+		Espadas,
+		Copas,
+		Paus,
+		Ouros
+	}
+	
+	public static enum Valor{
+		Dois(1),
+		Tres(1),
+		Quatro(1),
+		Cinco(1),
+		Seis(1),
+		Sete(10),
+		Oito(0),
+		Nove(0),
+		Dama(2),
+		Valete(3),
+		Rei(4),
+		As(11);
+		
+		private int pontos;
+		
+		private Valor(int pontos){
+			this.pontos = pontos;
+		}
+		
+		public int pontos(){
+			return this.pontos;
+		}
+	}
+	
+	public final Naipe naipe;
+	public final Valor valor;
+	
+	public Carta(Naipe naipe, Valor valor){
+		this.naipe = naipe;
+		this.valor = valor;
+	}	
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null)
+			return false;
+		if(!obj.getClass().isInstance(this.getClass()))
+			return false;
+		
+		Carta c = (Carta)obj;
+		return (this.naipe == c.naipe) && (this.valor == c.valor);		
+	}
+	
+	public int compareTo(Carta c){
+		if(c.equals(this))
+			return 0;
+		return c.
+	}
+}

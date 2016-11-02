@@ -1,0 +1,96 @@
+package Othello;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import Chap7Ex4.Piece;
+
+public class Board {
+	private static enum Direction{
+		UP(1,0),
+		LEFT_UP(1,-1),
+		RIGHT_UP(1,1),
+		RIGHT_DOWN(-1,1),
+		DOWN(-1,0),
+		LEFT_DOWN(-1,-1),
+		LEFT(0,-1),
+		RIGHT(0,1);
+		
+		private int vert;
+		private int hor;
+		
+		private Direction(int vert, int hor){
+			this.vert = vert;
+			this.hor = hor;
+		}
+		
+		public int getVert(){
+			return this.vert;
+		}
+		
+		public int getHor(){
+			return this.hor;
+		}
+		
+		public boolean isDiag(){
+			return (this.vert != 0 && this.hor != 0);
+		}
+	}
+	
+	private Position [][] pos;
+	private Set<Position> border = new HashSet<>();	
+	private int numWhite;
+	private int numBlack;
+	
+	public Board(){
+		this.pos =  new Position[8][8];
+		
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				this.pos[i][j] = new Position(Point.valueOf(i, j));
+			}
+		}
+		
+		this.get(Point.valueOf(3,3)).setColor(Color.WHITE);
+		this.get(Point.valueOf(3,4)).setColor(Color.BLACK);
+		this.get(Point.valueOf(4,3)).setColor(Color.BLACK);
+		this.get(Point.valueOf(4,4)).setColor(Color.BLACK);
+		
+		for(int i = 2; i < 6; i++){
+			for(int j = 2; j < 6; j++){
+				
+			}
+		}
+		
+		this.numBlack = this.numWhite = 2;		
+	}
+	
+	public int getNumWhite(){
+		return this.numWhite;
+	}
+	
+	public int getNumBlack(){
+		return this.numBlack;
+	}
+	
+	private Position get(Point p){
+		return this.pos[p.x][p.y];
+	}
+	
+	private boolean endsIn(Piece.Color color, Point p, Direction dir){
+		
+		
+		return true;
+	}
+	
+	public boolean isMoveValid(Piece.Color color, Point p1){
+		if(this.get(p1) != null)
+			return false;
+		
+		for(Direction dir : Direction.values())
+			if(this.endsIn(color, p1, dir))
+				return true;
+		
+		return false;
+	}
+}

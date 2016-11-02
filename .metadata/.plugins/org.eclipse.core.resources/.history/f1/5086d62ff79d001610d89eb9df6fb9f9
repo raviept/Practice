@@ -1,0 +1,37 @@
+package Chap7;
+
+public class Carta {
+	public static enum Naipe{
+		Espadas,
+		Copas,
+		Paus,
+		Ouros
+	}
+	
+	public static enum Tipo{
+		Dois(1),
+		Tres(1),
+		Quatro(1),
+		Cinco(1),
+		Seis(1),
+		Sete(10),
+		Oito(0),
+		Nove(0),
+		Dama(2),
+		Valete(3),
+		Rei(4),
+		As(11);
+		
+		public int valor(){
+			return 
+		}
+	}
+	
+	private Naipe naipe;
+	private Tipo tipo;
+	
+	public Carta(Naipe naipe, Tipo tipo){
+		this.naipe = naipe;
+		this.tipo = tipo;
+	}
+}

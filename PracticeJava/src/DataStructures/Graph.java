@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
-public class Graph<T extends Comparable<T>>{
+public class Graph<T>{
 	private Map<T,LinkNode<T>> links = new HashMap<>();
 	
 	public void addEdge(T a, T b){
@@ -16,9 +17,9 @@ public class Graph<T extends Comparable<T>>{
 			links.put(a,node);
 		else{
 			LinkNode<T> prev = links.get(a);
-			while(prev.getNext() != null && prev.getEl().compareTo(b) != 0)
+			while(prev.getNext() != null && !prev.getEl().equals(b))
 				prev = prev.getNext();
-			if(prev.getEl().compareTo(b) != 0){
+			if(!prev.getEl().equals(b)){
 				prev.setNext(node);
 			}
 		}
@@ -28,11 +29,11 @@ public class Graph<T extends Comparable<T>>{
 		if(!links.containsKey(a))
 			return;
 		LinkNode<T> prev = links.get(a);
-		if(prev.getEl().compareTo(b) == 0)
+		if(prev.getEl().equals(b))
 			links.put(a, prev.getNext());
 		else{
 			LinkNode<T> ahead = prev.getNext();
-			while(ahead != null && ahead.getEl().compareTo(b) != 0){
+			while(ahead != null && ahead.getEl().equals(b)){
 				prev = ahead;
 				ahead = ahead.getNext();
 			}
@@ -88,5 +89,23 @@ public class Graph<T extends Comparable<T>>{
 		}
 		
 		return list;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		for(Entry<T,LinkNode<T>> pair : this.links.entrySet()){
+			sb.append(pair.getKey() + ": ");
+			LinkNode<T> node = pair.getValue();
+			while(node != null){
+				sb.append(node.getEl());
+				if(node.getNext() != null)
+					sb.append(", ");
+				node = node.getNext();
+			}
+			sb.append(System.lineSeparator());
+		}
+		
+		return sb.toString();
 	}
 }

@@ -1,0 +1,5 @@
+package Chap7Ex2;
+
+public abstract class Employee {
+	
+}

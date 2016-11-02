@@ -1,0 +1,6 @@
+package Othello;
+
+public enum Color {
+	BLACK,
+	WHITE;
+}

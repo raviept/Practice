@@ -1,0 +1,11 @@
+package Chap5;
+
+public class Ex5 {
+	public static int numBitsChange(){
+		
+	}
+	
+	public static void main(String []args){
+		
+	}
+}

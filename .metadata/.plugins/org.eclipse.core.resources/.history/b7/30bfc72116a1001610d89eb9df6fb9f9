@@ -1,0 +1,19 @@
+package Othello;
+
+public class Position {
+	public static enum State{
+		EMPTY,
+		BORDER,
+		FULL;
+	}
+	
+	private State state;
+	private Piece piece;
+	private boolean validBlack;
+	
+	public Position(){
+		this.state = State.EMPTY;
+	}
+	
+	
+}

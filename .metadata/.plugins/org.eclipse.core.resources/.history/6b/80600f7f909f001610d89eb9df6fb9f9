@@ -1,0 +1,7 @@
+package Chap7Ex4;
+
+public final class Point {
+	public final int x;
+	public final int y;
+	
+}

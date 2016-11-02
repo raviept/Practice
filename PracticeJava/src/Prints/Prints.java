@@ -1,6 +1,8 @@
 package Prints;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import DataStructures.DataStructure;
 import DataStructures.LinkNode;
@@ -20,6 +22,22 @@ public class Prints {
 			}
 			System.out.println("");
 		}
+	}
+	
+	public static void printLittleEndian(int n){
+		ArrayList<Integer> arr = new ArrayList<>();
+		int c = 0;
+		while(n != 0 && c < 32){
+			int b = n%2;
+			arr.add(b);
+			n = n>>1;
+			c++;
+		}
+		for(int i = arr.size() - 1; i>= 0; i--){
+			System.out.print(arr.get(i));
+		}
+		
+		System.out.println();
 	}
 	
 	public static <T> void printList(LinkNode<T> head){
@@ -42,5 +60,75 @@ public class Prints {
 		}
 		
 		System.out.println("");
+	}
+
+	public static void printDec(String num) {
+		Decimal dec = Decimal.fromString(num);
+		if(dec == null)
+			System.out.println("ERROR");
+		else{
+			System.out.println(dec);
+		}
+	}
+	
+	private static class Decimal{
+		private int intPart = 0;
+		private double decPart = 0;
+		
+		private static Decimal fromString(String s){
+			Decimal dec = new Decimal();
+			int i = 0;
+			while(i < s.length() && s.charAt(i) != '.'){
+				char c = s.charAt(i);
+				if(c < '0' || c > '9')
+					return null;
+				dec.intPart = dec.intPart*10 + c - '0';
+				i++;
+			}
+			
+			if(i == s.length())
+				return dec;
+			i++;
+			if(i == s.length())
+				return null;
+			double d = 10;
+			do{
+				char c = s.charAt(i);
+				if(c < '0' || c > '9')
+					return null;
+				dec.decPart = dec.decPart + (double)(c - '0')/d;
+				d *= 10;
+				i++;
+			}while(i< s.length());
+			
+			
+			return dec;
+		}
+		
+		@Override
+		public String toString(){
+			StringBuilder sb = new StringBuilder();
+			
+			int i = this.intPart;
+			double j = this.decPart;
+			List<Integer> bits = new ArrayList<Integer>();
+			do{
+				bits.add(i & 0x1);
+				i = i>>1;
+			}while(i > 0);
+			for(int x = bits.size() -1 ; x>= 0; x--)
+				sb.append(bits.get(x));
+			if(j > 0){
+				sb.append('.');
+				do{
+					j = j*2;
+					int b = (int)j;
+					sb.append(b);
+					j = j-b;
+				}while(j > 0);
+			}		
+			
+			return sb.toString();
+		}
 	}
 }

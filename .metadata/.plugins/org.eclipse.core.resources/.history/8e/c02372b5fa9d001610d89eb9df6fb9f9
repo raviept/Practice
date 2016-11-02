@@ -1,0 +1,36 @@
+package Chap7;
+
+public class Tipo {
+	public static enum Naipe{
+		Espadas,
+		Copas,
+		Paus,
+		Ouros
+	}
+	
+	public static enum Valor{
+		Dois(1),
+		Tres(1),
+		Quatro(1),
+		Cinco(1),
+		Seis(1),
+		Sete(10),
+		Oito(0),
+		Nove(0),
+		Dama(2),
+		Valete(3),
+		Rei(4),
+		As(11);
+		
+		private int valor;
+		
+		private Valor(int valor){
+			this.valor = valor;
+		}
+		
+		public int valor(){
+			return this.valor;
+		}
+	}
+
+}

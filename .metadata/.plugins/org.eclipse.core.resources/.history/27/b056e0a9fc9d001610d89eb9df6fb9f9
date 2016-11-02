@@ -1,0 +1,28 @@
+package Chap7;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Jogador {
+	private Set<Carta> mao = new HashSet<>();
+	private String name;
+	
+	public Jogador(){
+		
+	}
+	
+	public void addToMao(Carta carta){
+		mao.add(carta);
+	}
+	
+	public void play(Carta carta){
+		mao.remove(carta);
+	}
+	
+	public Set<Carta> getMao(){
+		Set<Carta> copy = new HashSet<>();
+		copy.addAll(mao);
+		
+		return copy;
+	}
+}

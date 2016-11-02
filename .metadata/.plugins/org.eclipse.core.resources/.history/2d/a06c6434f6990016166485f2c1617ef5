@@ -1,0 +1,7 @@
+package DataStructures;
+
+public class AVL<K extends Comparable<K>,T> {
+	private AVLNode<K,T> root;
+	
+	
+}

@@ -1,0 +1,30 @@
+package Chap7Ex4;
+
+public class Board {
+	private Piece [][] mat;
+	
+	public Board(){
+		this.mat = newBoardMat();
+	}
+	
+	private static Piece[][] newBoardMat(){
+		Piece[][] pieces = new Piece[8][8];
+		
+		for(int i = 0; i < 8; i++){
+			pieces[1][i] = new Pawn(Piece.Color.WHITE);
+			pieces[6][i] = new Pawn(Piece.Color.BLACK);
+		}
+		pieces[0][0] = new Tower(Piece.Color.WHITE);
+		pieces[0][7] = new Tower(Piece.Color.WHITE);
+		pieces[7][0] = new Tower(Piece.Color.BLACK);
+		pieces[7][7] = new Tower(Piece.Color.BLACK);
+		
+		pieces[0][1] = new Bishop(Piece.Color.WHITE);
+		pieces[0][6] = new Bishop(Piece.Color.WHITE);
+		pieces[7][0] = new Bishop(Piece.Color.BLACK);
+		pieces[7][7] = new Bishop(Piece.Color.BLACK);
+		
+		
+		return pieces;
+	}
+}

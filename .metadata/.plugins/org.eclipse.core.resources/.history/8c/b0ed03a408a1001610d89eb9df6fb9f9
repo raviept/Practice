@@ -1,0 +1,14 @@
+package Chap7Ex7;
+
+import java.util.GregorianCalendar;
+
+public class Message {
+	private User source;
+	private String text;
+	private GregorianCalendar time;
+	
+	
+	public Message(User source, String text, ){
+		
+	}
+}

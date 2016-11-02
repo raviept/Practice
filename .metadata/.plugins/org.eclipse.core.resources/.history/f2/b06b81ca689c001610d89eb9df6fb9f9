@@ -1,0 +1,12 @@
+package Chap5;
+
+import java.util.Scanner;
+
+import Prints.Prints;
+
+public class Ex2 {
+	public static void main(String [] args){
+		Scanner scan = new Scanner(System.in);
+		Prints.printDect(scan.nextLine()));
+	}
+}

@@ -2,6 +2,7 @@ package Gen;
 
 import java.util.Random;
 
+import DataStructures.Graph;
 import DataStructures.KStack;
 import DataStructures.LinkNode;
 import DataStructures.Queue;
@@ -9,6 +10,7 @@ import DataStructures.SetOfStacks;
 import DataStructures.Stack;
 import DataStructures.StackWMin;
 import Exceptions.FullStackException;
+import Sort.QuickSort;
 
 public class RandGen {
 	public static int [][] genMat(int m, int n, int max){
@@ -91,5 +93,37 @@ public class RandGen {
 		}
 		
 		return stack;
+	}
+	
+	public static Graph<Integer> genGraph(int n, int max){
+		Graph<Integer> g = new Graph<>();
+		
+		Random rand = new Random();
+		for(int i = 0; i < n; i++){
+			int v = rand.nextInt(max);
+			int u = rand.nextInt(max - 1);
+			if(u >= v)
+				u++;
+			g.addEdge(v, u);			
+		}		
+		
+		return g;
+	}
+	
+	public static int[] genArray(int n, int max){
+		Random rand = new Random();
+		int [] arr = new int[n];
+		for(int i = 0; i < n; i++){
+			arr[i] = rand.nextInt(max);
+		}
+		
+		return arr;
+	}
+	
+	public static int[] genOrderedArray(int n, int max){
+		int [] arr = genArray(n, max);
+		QuickSort.qSort(arr);
+		
+		return arr;
 	}
 }

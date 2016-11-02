@@ -1,0 +1,14 @@
+package Chap7;
+
+import java.util.List;
+
+public abstract class Jogo {
+	private Baralho baralho;
+	private List<Jogador> jogadores;
+	
+	public abstract void distributeCards();
+	
+	public List<Jogador> getJogadores(){
+		List<Jogador>
+	}
+}

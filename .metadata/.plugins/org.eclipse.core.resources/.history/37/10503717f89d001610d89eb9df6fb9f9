@@ -1,0 +1,23 @@
+package Chap7;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Baralho {
+	private List<Carta> cartas = new ArrayList<Carta>();
+	
+	private Baralho(){
+		
+	}
+	
+	public static Baralho newBaralhoDeSueca(){
+		Baralho bar = new Baralho();
+		for(Carta.Tipo tipo : Carta.Tipo.values()){
+			for(Carta.Naipe naipe : Carta.Naipe.values()){
+				bar.cartas.add(new Carta(naipe,tipo));
+			}
+		}
+		
+		return bar;
+	}
+}

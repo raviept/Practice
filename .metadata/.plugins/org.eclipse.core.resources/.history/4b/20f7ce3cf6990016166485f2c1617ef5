@@ -1,0 +1,9 @@
+package DataStructures;
+
+public class AVL<K extends Comparable<K>,T> {
+	private AVLNode<K,T> root;
+	
+	public void put(K key,T data){
+		this.root = this.root
+	}
+}

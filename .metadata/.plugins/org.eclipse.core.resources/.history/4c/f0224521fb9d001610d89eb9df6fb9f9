@@ -1,0 +1,19 @@
+package Chap7;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Jogador {
+	private Map<Tipo,Carta> mao = new HashMap<>();
+	
+	public void addCarta(Carta){
+		
+	}
+	
+	public Carta play(Tipo tipo){
+		Carta car = mao.get(tipo);
+		mao.remove(tipo);
+		
+		return car;
+	}
+}

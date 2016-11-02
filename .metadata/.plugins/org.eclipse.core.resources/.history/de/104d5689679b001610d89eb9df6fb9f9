@@ -1,0 +1,11 @@
+package Chap4;
+
+import Gen.RandGen;
+
+public class Ex2 {
+
+	public static void main(String [] args){
+		Graph<Integer> graph = RandGen.genGraph(20, 10);
+		
+	}
+}
